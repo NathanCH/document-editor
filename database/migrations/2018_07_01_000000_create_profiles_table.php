@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->text('about');
+            $table->text('about')->nullable();
             $table->timestamps();
             
             $table->foreign('user_id')
