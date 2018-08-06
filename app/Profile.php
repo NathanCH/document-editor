@@ -15,6 +15,11 @@ class Profile extends Model
         'name', 'about',
     ];
     
+    /**
+     * A profile is belongs to a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User');

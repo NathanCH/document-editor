@@ -31,4 +31,18 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Profile');
     }
+    
+    /**
+     * Return email when profile name has not been set.
+     *
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {        
+        if(empty($this->profile->name)) {
+            return $this->email;
+        }
+        
+        return $this->profile->name;
+    }
 }

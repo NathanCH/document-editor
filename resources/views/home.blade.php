@@ -14,7 +14,7 @@
                     @endif
 
                     @foreach ($users as $user)
-                        <p>{{ $user->profile->name }} is user {{ $user->id }}</p>
+                        <p>{{ $user->name }} is user {{ $user->id }}</p>
                     @endforeach
 
                     You are logged in!
