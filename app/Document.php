@@ -36,4 +36,15 @@ class Document extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    /**
+     * Return default string if document is untitled.
+     *
+     * @param string $value
+     * @return string
+     */
+     public function getTitleAttribute($value)
+     {
+         return !empty($value) ? $value : 'Untitled Draft';
+     }
 }

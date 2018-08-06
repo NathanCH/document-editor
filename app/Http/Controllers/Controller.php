@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Http\Middleware\SetUserIfAuthenticated;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,6 +13,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
+    /**
+     * Current authenticated user.
+     *
+     * @return App\User
+     */
     protected $user;
     
     /**
@@ -24,7 +30,7 @@ class Controller extends BaseController
         $this->middleware(function($request, $next) {
             $this->user = Auth::user();
             $this->userId = Auth::id();
-          
+
             return $next($request);
         });
     }

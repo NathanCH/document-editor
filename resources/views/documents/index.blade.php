@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="documents/create" class="btn btn-sm">Create Document</a>
+            <div class="text-right">
+                <a href="documents/create" class="btn btn-primary mb-3">Create Document</a>
+            </div>
             <div class="card">
                 <div class="card-header">Documents</div>
                 <div class="card-body">

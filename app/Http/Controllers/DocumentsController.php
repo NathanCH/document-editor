@@ -60,6 +60,8 @@ class DocumentsController extends Controller
         $document->title = $request->title;
         
         $document->save();
+        
+        return redirect('documents');
     }
     
     
