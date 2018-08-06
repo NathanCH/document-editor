@@ -73,6 +73,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
         ]);
         
+        $document = $user->document()->create([
+            'title' => 'My first document',
+        ]);
+        
         event(new UserRegistered($user));
         
         return $user;

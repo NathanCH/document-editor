@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile');
     }
     
+    public function document()
+    {
+        return $this->hasMany('App\Document');
+    }
+    
     /**
      * Return email when profile name has not been set.
      *
