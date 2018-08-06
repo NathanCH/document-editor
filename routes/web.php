@@ -14,4 +14,9 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/documents', 'DocumentsController@index')->name('documents');
+Route::post('/documents', 'DocumentsController@store')->name('documents');
+
+Route::get('/documents/create', 'DocumentsController@create')->name('documents/create');
+

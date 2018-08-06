@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Document;
+use App\Http\Requests\StoreDocument;
 use Illuminate\Http\Request;
 
 class DocumentsController extends Controller
@@ -16,6 +16,8 @@ class DocumentsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        parent::__construct();
     }
     
     /**
@@ -25,11 +27,39 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-
-        $documents = Document::where('user_id', $user_id)->get();
+        $documents = Document::where('user_id', $this->userId)->get();
 
         return view('documents.index', compact('documents'));
+    }
+    
+    /**
+     * Display request form to create document.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('documents.create');
+    }
+    
+    /**
+     * Store document.
+     *
+     * @param StoreDocument $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreDocument $request)
+    {
+        if (!$request->validated()) {
+            return redirect('/');
+        }
+        
+        $document = new Document;
+        
+        $document->user_id = $this->userId;
+        $document->title = $request->title;
+        
+        $document->save();
     }
     
     
