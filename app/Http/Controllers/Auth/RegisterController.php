@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -71,6 +72,8 @@ class RegisterController extends Controller
         $profile = $user->profile()->create([
             'name' => $data['name'],
         ]);
+        
+        event(new UserRegistered($user));
         
         return $user;
     }
