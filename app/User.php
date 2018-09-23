@@ -28,15 +28,35 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
+    /**
+     * A user has one profile.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function profile()
     {
         return $this->hasOne('App\Profile');
     }
-    
+  
+    /**
+     * A user has many documents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function document()
     {
         return $this->hasMany('App\Document');
+    }
+    
+    /**
+     * A user has pages documents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function page()
+    {
+        return $this->hasMany('App\Page');
     }
     
     /**

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use App\Document;
-use App\Http\Requests\StoreDocument;
+use App\Http\Requests\StorePage;
 use Illuminate\Http\Request;
 
-class DocumentsController extends Controller
+class PagesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,48 +22,52 @@ class DocumentsController extends Controller
     }
     
     /**
-     * Show list of documents.
+     * Show list of pages.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $documents = Document::where('user_id', $this->userId)->get();
+        $pages = Page::where('user_id', $this->userId)->get();
 
-        return view('documents.index', compact('documents'));
+        return view('pages.index', compact('pages'));
     }
     
     /**
-     * Display request form to create document.
+     * Display request form to create page.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('documents.create');
+        $documents = Document::where('user_id', $this->userId)->get();
+        
+        return view('pages.create', compact('documents'));
     }
     
     /**
-     * Store document.
+     * Store page.
      *
      * @param StoreDocument $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDocument $request)
+    public function store(StorePage $request)
     {
         if (!$request->validated()) {
             return redirect('/');
         }
+
+        $page = new Page;
         
-        $document = new Document;
+        $page->user_id = $this->userId;
+
+        $page->order = $request->order;
         
-        $document->user_id = $this->userId;
-  
-        $document->title = $request->title;
+        $document = Document::find($request->document_id);
         
-        $document->save();
-        
-        return redirect('documents');
+        $document->pages()->save($page);
+
+        return redirect('pages');
     }
     
     

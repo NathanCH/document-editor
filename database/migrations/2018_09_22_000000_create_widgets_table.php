@@ -25,7 +25,7 @@ class CreateWidgetsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-                
+
             $table->foreign('widget_type_id')
               ->references('id')
               ->on('widget_types')

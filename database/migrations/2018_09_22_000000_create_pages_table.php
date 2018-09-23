@@ -17,11 +17,7 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('document_id')->unsigned();
-
-            $table->integer('order')
-                ->unsigned()
-                ->nullable();
-
+            $table->integer('order')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
 
@@ -29,10 +25,10 @@ class CreatePagesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-                
+
             $table->foreign('document_id')
                 ->references('id')
-                ->on('users')
+                ->on('documents')
                 ->onDelete('cascade');
         });
     }

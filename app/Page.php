@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Document extends Model
+class Page extends Model
 {
     use SoftDeletes;
     
@@ -15,7 +15,7 @@ class Document extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
+        'order',
     ];
 
     /**
@@ -28,7 +28,7 @@ class Document extends Model
     ];
     
     /**
-     * A document belongs to a user.
+     * A page belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -38,23 +38,12 @@ class Document extends Model
     }
     
     /**
-     * A document has many pages.
+     * A page belongs to a document.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pages()
+    public function document()
     {
-        return $this->hasMany('App\Page')->orderBy('order');
+        return $this->belongsTo('App\Document');
     }
-    
-    /**
-     * Return default string if document is untitled.
-     *
-     * @param string $value
-     * @return string
-     */
-     public function getTitleAttribute($value)
-     {
-         return !empty($value) ? $value : 'Untitled Draft';
-     }
 }

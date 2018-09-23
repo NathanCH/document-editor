@@ -17,11 +17,7 @@ class CreatePagesWidgetsTable extends Migration
             $table->increments('id');
             $table->integer('page_id')->unsigned();
             $table->integer('widget_id')->unsigned();
-
-            $table->integer('order')
-                ->unsigned()
-                ->nullable();
-
+            $table->integer('order')->unsigned()->nullable();
             $table->timestamps();
         });
     }

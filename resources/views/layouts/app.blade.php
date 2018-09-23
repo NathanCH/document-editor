@@ -38,6 +38,9 @@
                                     <a class="dropdown-item" href="{{ route('documents') }}">
                                         {{ __('My Documents') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('pages') }}">
+                                        {{ __('My Pages') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
