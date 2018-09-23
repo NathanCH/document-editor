@@ -68,13 +68,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         
-        // $profile = $user->profile()->create([
-        //     'name' => $data['name'],
-        // ]);
+        $profile = $user->profile()->create();
         
-        $document = $user->document()->create([
-            'title' => 'My first document',
-        ]);
+        $document = $user->document()->create();
         
         event(new UserRegistered($user));
         

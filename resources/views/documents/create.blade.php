@@ -28,22 +28,6 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Body') }}</label>
-                            <div class="col-md-6">
-                                <textarea
-                                  id="body"
-                                  class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}"
-                                  name="body"
-                                  value="{{ old('body') }}"
-                                ></textarea>
-                                @if ($errors->has('body'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('body') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

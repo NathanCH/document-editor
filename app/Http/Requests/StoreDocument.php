@@ -25,7 +25,7 @@ class StoreDocument extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'alpha_num|max:255',
+            'title' => 'nullable|max:255',
         ];
     }
 }
