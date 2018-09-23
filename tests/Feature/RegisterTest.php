@@ -22,7 +22,6 @@ class RegisterTest extends TestCase
         $profile = factory(Profile::class)->make();
     
         $response = $this->post('/register', [
-          'name' => $profile->name,
           'email' => $user->email,
           'password' => 'secret',
           'password_confirmation' => 'secret',
@@ -43,7 +42,6 @@ class RegisterTest extends TestCase
         $user = factory(User::class)->make();
 
         $response = $this->post('/register', [
-          'name' => $user->name,
           'email' => $user->email,
           'password' => 'secret',
           'password_confirmation' => 'invalid',

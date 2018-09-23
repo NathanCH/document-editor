@@ -66,7 +66,6 @@ class User extends Authenticatable
      */
     public function getNameAttribute($value)
     {
-        return !empty($this->profile->name) 
-          ? $this->profile->name : $this->email;
+        return !empty($this->profile->name) ? $this->profile->name : $this->email;
     }
 }
