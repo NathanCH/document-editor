@@ -18,8 +18,11 @@ Route::get('/', 'HomeController@index')->name('home');
 // Documents
 Route::get('/documents', 'DocumentsController@index')->name('documents');
 Route::get('/documents/create', 'DocumentsController@create')->name('documents/create');
+Route::get('/documents/{id}/', 'DocumentsController@show')->name('documents/{id}');
 
 Route::post('/documents', 'DocumentsController@store')->name('documents');
+Route::post('/documents/{id}', 'DocumentsController@update')->name('documents/{id}');
+
 
 // Pages
 Route::get('/pages', 'PagesController@index')->name('pages');

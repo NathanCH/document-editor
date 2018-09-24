@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Http\Requests\StoreDocument;
+use App\Http\Requests\UpdateDocument;
 use Illuminate\Http\Request;
 
 class DocumentsController extends Controller
@@ -65,5 +66,41 @@ class DocumentsController extends Controller
         return redirect('documents');
     }
     
+    /**
+     * Display the document.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $document = Document::find($id);
+
+        return view('documents.show', compact('document'));
+    }
     
+    /**
+     * Handle update document request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateDocument $request, $id)
+    {
+        if (!$request->validated()) {
+            return redirect('/');
+        }
+        
+        $document = Document::whereId($id)->first();
+        
+        $document->update([
+          'title' => $request->title,
+        ]);
+        
+        $document->save();
+        
+        return redirect('documents');
+    }
+
 }
