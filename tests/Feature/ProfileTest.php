@@ -26,7 +26,9 @@ class ProfileTest extends TestCase
       $profile = factory(Profile::class)->make($data);
     
       $this->assertInstanceOf(Profile::class, $profile);
+      
       $this->assertEquals($data['name'], $profile->name);
+      
       $this->assertEquals($data['about'], $profile->about);
     }
 }

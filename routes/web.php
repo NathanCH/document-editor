@@ -15,6 +15,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Profile
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile', 'ProfileController@update')->name('profile');
+
 // Documents
 Route::get('/documents', 'DocumentsController@index')->name('documents');
 Route::get('/documents/create', 'DocumentsController@create')->name('documents/create');

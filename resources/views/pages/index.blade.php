@@ -17,8 +17,7 @@
                     @endif
                     
                     <h4>My Pages</h4>
-
-                    @if ($pages)
+                    @if (count($pages))
                       <ul>
                           @foreach ($pages as $page)
                               <li>
@@ -32,6 +31,8 @@
                               </li>
                           @endforeach
                       </ul>
+                    @else
+                      <p>No pages</p>
                     @endif
                 </div>
             </div>

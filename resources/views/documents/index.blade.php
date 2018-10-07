@@ -42,6 +42,8 @@
                               </li>
                           @endforeach
                       </ol>
+                    @else
+                      <p>No documents</p>
                     @endif
                 </div>
             </div>
