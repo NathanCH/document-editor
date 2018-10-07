@@ -30,8 +30,8 @@
                                   type="text"
                                   class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
                                   name="name" 
-                                  value="{{ old('name') }}" 
-                                  placeholder="{{ $profile->user->name }}"
+                                  value="{{ old('name') ?: $profile->name }}" 
+                                  placeholder="{{ $profile->user->email }}"
                                   autofocus
                                 >
                                 @if ($errors->has('name'))

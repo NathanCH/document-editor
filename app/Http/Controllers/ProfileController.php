@@ -45,13 +45,13 @@ class ProfileController extends Controller
             return redirect('/');
         }
         
-        $profile = Profile::whereId($this->userId)->first();
+        $profile = Profile::whereUserId($this->userId)->first();
         
         $profile->update([ 'name' => $request->name ]);
         
         $profile->save();
         
-        return redirect('profile');
+        return redirect('/');
     }
 
 }

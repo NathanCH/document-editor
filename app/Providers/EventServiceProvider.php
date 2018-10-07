@@ -14,6 +14,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\UserRegistered' => [
+            'App\Listeners\CreateDefaultProfile',
+            'App\Listeners\CreateDefaultDocument',
             'App\Listeners\SendWelcomeEmail',
         ],
     ];

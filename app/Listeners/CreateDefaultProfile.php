@@ -2,14 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Mail\Welcome;
 use App\Events\UserRegistered;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
-class SendWelcomeEmail
+class CreateDefaultProfile
 {
     /**
      * Create the event listener.
@@ -31,6 +26,6 @@ class SendWelcomeEmail
     {
         $user = $event->user;
         
-        Mail::to($user->email)->send(new Welcome($user));
+        $user->profile()->create();
     }
 }

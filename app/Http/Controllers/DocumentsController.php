@@ -94,9 +94,7 @@ class DocumentsController extends Controller
         
         $document = Document::whereId($id)->first();
         
-        $document->update([
-          'title' => $request->title,
-        ]);
+        $document->update([ 'title' => $request->title ]);
         
         $document->save();
         
