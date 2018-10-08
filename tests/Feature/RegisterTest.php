@@ -17,9 +17,9 @@ class RegisterTest extends TestCase
      * @return void
      */
     public function testRegisterValidUser()
-    {
+    {   
         $this->withoutEvents();
-      
+
         $user = factory(User::class)->make();
 
         $response = $this->post('/register', [
@@ -54,4 +54,45 @@ class RegisterTest extends TestCase
         
         $this->assertGuest();
     }
+    
+    /**
+     * Register valid user sends UserRegistered event.
+     *
+     * @return void
+     */
+    public function testRegisterValidUserSendsEvent()
+    {
+        Event::fake();
+        
+        $userData = factory(User::class)->make();
+    
+        $this->post('/register', [
+            'email' => $userData->email,
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ]);
+        
+        Event::assertDispatched(UserRegistered::class);
+    }
+    
+    /**
+     * Register invalid user does not send UserRegistered event.
+     *
+     * @return void
+     */
+    public function testRegisterValidUserSendsEvent2()
+    {
+        Event::fake();
+        
+        $userData = factory(User::class)->make();
+    
+        $this->post('/register', [
+            'email' => $userData->email,
+            'password' => 'secret',
+            'password_confirmation' => 'invali',
+        ]);
+        
+        Event::assertNotDispatched(UserRegistered::class);
+    }
+    
 }
