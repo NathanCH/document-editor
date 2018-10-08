@@ -6,7 +6,6 @@ use App\User;
 use App\Profile;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
@@ -32,14 +31,30 @@ class UserTest extends TestCase
     }
     
     /**
-     * Test name attribute returns email when Profile name attribute is empty. 
+     * Test name attribute returns email. 
+     *
+     * @return void
+     */
+    public function testGetNameAttributeReturnEmail()
+    {    
+        $userData = [
+            'email' => $this->faker->email,
+            'password' => $this->faker->password,
+        ];
+
+        $user = factory(User::class)->create($userData);
+        
+        $this->assertEquals($user['email'], $user->name);   
+    }
+    
+    /**
+    * Test name attribute returns profile name when profile name is assigned. 
      *
      * @return void
      */
     public function testGetNameAttribute()
-    {
+    {    
         $userData = [
-            'id' => $this->faker->randomDigitNotNull,
             'email' => $this->faker->email,
             'password' => $this->faker->password,
         ];
@@ -48,12 +63,10 @@ class UserTest extends TestCase
             'name' => $this->faker->name,
         ];
 
-        $user = factory(User::class)->make($userData);
-        
-        $userWithProfile = $user->profile()->create($profileData);
-        
-        $this->assertEquals($userData['email'], $user->name);
+        $user = factory(User::class)->create($userData);
 
-        $this->assertEquals($profileData['name'], $userWithProfile->name);    
+        $user->profile()->create($profileData);
+        
+        $this->assertEquals($profileData['name'], $user->name);    
     }
 }

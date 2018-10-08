@@ -6,7 +6,6 @@ use App\Page;
 use App\Document;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PageTest extends TestCase
 {

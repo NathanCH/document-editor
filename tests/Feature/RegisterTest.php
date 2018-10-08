@@ -5,8 +5,9 @@ namespace Tests\Feature;
 use App\User;
 use App\Profile;
 use Tests\TestCase;
+use App\Events\UserRegistered;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
 {
@@ -17,14 +18,14 @@ class RegisterTest extends TestCase
      */
     public function testRegisterValidUser()
     {
+        $this->withoutEvents();
+      
         $user = factory(User::class)->make();
-        
-        $profile = factory(Profile::class)->make();
-    
+
         $response = $this->post('/register', [
-          'email' => $user->email,
-          'password' => 'secret',
-          'password_confirmation' => 'secret',
+            'email' => $user->email,
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
         ]);
     
         $response->assertStatus(302);
@@ -39,12 +40,14 @@ class RegisterTest extends TestCase
      */
     public function testDoesNotRegisterInvalidUser()
     {
+        $this->withoutEvents();
+
         $user = factory(User::class)->make();
 
         $response = $this->post('/register', [
-          'email' => $user->email,
-          'password' => 'secret',
-          'password_confirmation' => 'invalid',
+            'email' => $user->email,
+            'password' => 'secret',
+            'password_confirmation' => 'invalid',
         ]);
         
         $response->assertSessionHasErrors();
