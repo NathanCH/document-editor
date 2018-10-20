@@ -80,7 +80,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function testRegisterValidUserSendsEvent2()
+    public function testRegisterInvalidUserSendsNoEvent()
     {
         Event::fake();
         
@@ -89,7 +89,7 @@ class RegisterTest extends TestCase
         $this->post('/register', [
             'email' => $userData->email,
             'password' => 'secret',
-            'password_confirmation' => 'invali',
+            'password_confirmation' => 'invalid',
         ]);
         
         Event::assertNotDispatched(UserRegistered::class);

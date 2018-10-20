@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="text-left">
+                <a href="{{ route('home') }}" class="btn btn-link mb-3">
+                  Back to Index
+                </a>
+            </div>
             <div class="card">
                 <div class="card-header">Profile</div>
                 <div class="card-body">
@@ -20,6 +25,11 @@
                                   value="{{ $profile->user->email }}" 
                                   readonly
                                 >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4 mb-1">
+                                <a href="{{ route('profile/password') }}" class="">Update Password</a>
                             </div>
                         </div>
                         <div class="form-group row">

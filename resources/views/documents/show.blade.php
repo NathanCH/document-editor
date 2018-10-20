@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+          <div class="text-left">
+              <a href="{{ route('documents') }}" class="btn btn-link mb-3">
+                Back to Documents
+              </a>
+          </div>
             <div class="card">
                 <div class="card-header">{{ __('View Document') }}</div>
                 <div class="card-body">
@@ -37,6 +42,22 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="card mt-4">
+              <div class="card-header">{{ __('Document Pages') }}</div>
+              <div class="card-body">
+                @if ($document->pages)
+                    <ol>
+                        @foreach ($document->pages as $page)
+                            <li>
+                                <a href="/pages/{{ $page->id }}">
+                                  Page {{ $page->id }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ol>
+                @endif
+              </div>
             </div>
         </div>
     </div>

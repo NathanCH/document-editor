@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="text-left">
+                <a href="{{ route('documents') }}" class="btn btn-link mb-3">
+                  Back to Documents
+                </a>
+            </div>
             <div class="card">
                 <div class="card-header">{{ __('Create Document') }}</div>
                 <div class="card-body">

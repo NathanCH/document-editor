@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\Http\Requests\UpdateProfile;
+use App\Http\Requests\UpdateProfilePassword;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -51,7 +53,43 @@ class ProfileController extends Controller
         
         $profile->save();
         
-        return redirect('/');
+        return view('profile.index', compact('profile'));
+    }
+    
+    /**
+     * Show update password.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showProfilePassword()
+    {
+        return view('profile.password');
+    }
+    
+    /**
+     * Save updated password.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfilePassword(UpdateProfilePassword $request)
+    {
+        if (!$request->validated()) {
+            return redirect('/');
+        }
+        
+        $profile = Profile::whereUserId($this->userId)->first();
+        
+        if (!Hash::check($request->current_password, $this->user->password)) {
+            return redirect('profile/password');
+        }
+        
+        $profile->update([
+          'password' => bcrypt($request->password),
+        ]);
+        
+        $profile->save();
+        
+        return view('profile.index', compact('profile'));
     }
 
 }

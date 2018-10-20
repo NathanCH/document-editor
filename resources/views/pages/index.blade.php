@@ -4,8 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="text-right">
-                <a href="pages/create" class="btn btn-primary mb-3">Create Page</a>
+            <div class="text-left">
+                <a href="{{ route('home') }}" class="btn btn-link mb-3">
+                  Back to Index
+                </a>
+                <a href="pages/create" class="btn btn-link mb-3">
+                  Create Page
+                </a>
             </div>
             <div class="card">
                 <div class="card-header">Pages</div>

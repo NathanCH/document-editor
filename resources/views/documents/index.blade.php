@@ -4,8 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="text-right">
-                <a href="documents/create" class="btn btn-primary mb-3">
+            <div class="text-left">
+                <a href="{{ route('home') }}" class="btn btn-link mb-3">
+                  Back to Index
+                </a>
+                <a href="documents/create" class="btn btn-link mb-3">
                   Create Document
                 </a>
             </div>
@@ -24,7 +27,7 @@
                       <ol>
                           @foreach ($documents as $document)
                               <li>
-                                  <a href="documents/{{ $document->id }}">
+                                  <a href="/documents/{{ $document->id }}">
                                     {{ $document->title }}
                                   </a>
 
@@ -32,7 +35,7 @@
                                       <ol>
                                           @foreach ($document->pages as $page)
                                               <li>
-                                                  <a href="pages/{{ $page->id }}">
+                                                  <a href="/pages/{{ $page->id }}">
                                                     Page {{ $page->id }}
                                                   </a>
                                               </li>

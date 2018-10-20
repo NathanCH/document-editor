@@ -28,7 +28,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $pages = Page::where('user_id', $this->userId)->get();
+        $pages = Page::where('user_id', $this->userId)->orderBy('order')->get();
 
         return view('pages.index', compact('pages'));
     }
@@ -69,4 +69,18 @@ class PagesController extends Controller
 
         return redirect('pages');
     }
+    
+    /**
+     * Display the document.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $page = Page::find($id);
+
+        return view('pages.show', compact('page'));
+    }
+    
 }
