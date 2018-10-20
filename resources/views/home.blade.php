@@ -23,5 +23,5 @@
         </div>
     </div>
 </div>
-<div id="example" class="mt-3"></div>
+<div id="root" class="mt-3"></div>
 @endsection

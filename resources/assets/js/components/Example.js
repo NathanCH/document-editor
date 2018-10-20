@@ -10,7 +10,7 @@ export default class Example extends Component {
                         <div className="card">
                             <div className="card-header">React Component</div>
                             <div className="card-body">
-                                Good stuff.
+                                Good stuff!
                             </div>
                         </div>
                     </div>
