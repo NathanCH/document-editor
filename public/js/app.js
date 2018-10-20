@@ -18370,7 +18370,7 @@ try {
   window.$ = window.jQuery = __webpack_require__(26);
 
   __webpack_require__(62);
-} catch (e) {}
+} catch (e) {};
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -18407,10 +18407,10 @@ if (token) {
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//   broadcaster: 'pusher',
+//   key: process.env.MIX_PUSHER_APP_KEY,
+//   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//   encrypted: true
 // });
 
 /***/ }),
@@ -40591,9 +40591,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var target = document.querySelector('#root');
+var elm = document.querySelector('#root');
 
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+var connectedApp = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
   __WEBPACK_IMPORTED_MODULE_2_react_redux__["Provider"],
   { store: __WEBPACK_IMPORTED_MODULE_4__store__["a" /* default */] },
   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -40605,7 +40605,9 @@ Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MOD
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__containers_app__["a" /* default */], null)
     )
   )
-), target);
+);
+
+Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(connectedApp, elm);
 
 /***/ }),
 /* 84 */
@@ -65355,9 +65357,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
-  counter: __WEBPACK_IMPORTED_MODULE_1__counter__["c" /* default */]
-}));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({ counter: __WEBPACK_IMPORTED_MODULE_1__counter__["c" /* default */] }));
 
 /***/ }),
 /* 138 */
@@ -65936,7 +65936,7 @@ exports = module.exports = __webpack_require__(155)(false);
 
 
 // module
-exports.push([module.i, "html {\n  font-size: 100%;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,\n    sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n}\n\nbutton:disabled {\n  opacity: 0.5;\n}\n", ""]);
+exports.push([module.i, "button:disabled {\n  opacity: 0.5;\n}\n", ""]);
 
 // exports
 
