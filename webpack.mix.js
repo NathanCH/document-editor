@@ -1,4 +1,5 @@
-let mix = require('laravel-mix');
+const { mix } = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +11,14 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ 
+ mix.webpackConfig({
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'resources/assetsjs/components/'),
+    },
+  },
+});
 
 mix.react('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
