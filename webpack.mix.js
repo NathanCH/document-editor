@@ -15,7 +15,9 @@ const path = require('path');
  mix.webpackConfig({
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'resources/assetsjs/components/'),
+      app: path.resolve(__dirname, 'resources/assets/js/'),
+      components: path.resolve(__dirname, 'resources/assets/js/components'),
+      modules: path.resolve(__dirname, 'resources/assets/js/modules'),
     },
   },
 });

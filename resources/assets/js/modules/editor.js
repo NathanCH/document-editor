@@ -2,8 +2,10 @@ export const EDITOR_MODE = 'editor/EDITOR_MODE';
 export const PREVIEW_MODE = 'editor/PREVIEW_MODE';
 export const TOGGLE_PRINT_LAYOUT = 'editor/TOGGLE_PRINT_LAYOUT';
 
+import { MODE_EDITOR, MODE_PREVIEW } from 'app/constants.js';
+
 const initialState = {
-  mode: 'MODE_EDITOR',
+  mode: MODE_EDITOR,
   is_print_layout: false,
 };
 
@@ -12,13 +14,13 @@ export default (state = initialState, action) => {
     case EDITOR_MODE:
       return {
         ...state,
-        mode: 'MODE_EDITOR',
+        mode: MODE_EDITOR,
       }
       
     case PREVIEW_MODE:
       return {
         ...state,
-        mode: 'MODE_PREVIEW',
+        mode: MODE_PREVIEW,
       }
       
     case TOGGLE_PRINT_LAYOUT:
@@ -32,7 +34,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const togglePrintLayout = () => {
+export const togglePrintLayout = (e) => {
   return dispatch => {
     dispatch({
       type: TOGGLE_PRINT_LAYOUT,

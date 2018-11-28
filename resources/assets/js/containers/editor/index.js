@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import {
   togglePrintLayout,
-} from '../../modules/editor.js';
+} from 'modules/editor.js';
 
 import {
   Row,
@@ -37,9 +37,13 @@ const Editor = props => (
                   <Button outline color="secondary">Preview</Button>
                 </ButtonGroup>
               </Col>
-              <Col className="text-right ">
-                <Button color="link" className="text-muted" onClick={props.togglePrintLayout}>
-                  <Input type="checkbox" />
+              <Col className="text-right">
+                <Button
+                  color="link" 
+                  className="text-muted" 
+                  onClick={props.togglePrintLayout}
+                >
+                  <Input type="checkbox" checked={props.is_print_layout} />
                   Print Layout
                 </Button>
               </Col>
