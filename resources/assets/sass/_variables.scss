@@ -1,6 +1,16 @@
+// Colors
+$blue:    #3b5eb6;
+$purple:  #bf25e5;
+$pink:    #f058a3;
+$red:     #f66051;
+$orange:  #e58825;
+$green:   #7baf22;
+$teal:    #4acbb7;
+$cyan:    #22c0d7;
 
-// Body
-$body-bg: #f5f8fa;
+$theme-colors: (
+  "primary": $red,
+);
 
 // Typography
 $font-family-sans-serif: "Raleway", sans-serif;

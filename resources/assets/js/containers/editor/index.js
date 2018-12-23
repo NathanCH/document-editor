@@ -19,8 +19,6 @@ import {
 
 import Page from 'components/Page';
 
-import './index.scss';
-
 const Editor = props => (
   <div>
     <Row>
@@ -54,10 +52,8 @@ const Editor = props => (
     </Row>
     <Row>
       <Col>
-        <div className="Editor__pages">
-          <Page name="Page 1"  />
-          <Page />
-        </div>
+        <Page name="Page 1"  />
+        <Page />
       </Col>
     </Row>
   </div>

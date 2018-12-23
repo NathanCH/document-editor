@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { Container, Col, Nav, NavItem, NavLink, Row } from 'reactstrap';
+
 import Editor from '../editor';
 import Home from '../home';
 import About from '../about';
@@ -8,7 +9,7 @@ import About from '../about';
 const App = () => (
   <Container>
     <Row className="justify-content-center">
-      <Col md="10">
+      <Col>
         <Nav className="mb-3">
           <NavItem>
             <NavLink tag={Link} to="/">Editor</NavLink>
