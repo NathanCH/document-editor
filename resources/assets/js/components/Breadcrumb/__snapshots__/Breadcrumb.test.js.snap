@@ -19,25 +19,6 @@ exports[`it does not render current page when prop is null 1`] = `
 </ul>
 `;
 
-exports[`it render no current page when prop is null 1`] = `
-<ul
-  className="breadcrumb"
->
-  <li
-    className="breadcrumb-item"
-  >
-    <a
-      className="breadcrumb-link"
-      href="/"
-    >
-      <i
-        className="fa fa-home"
-      />
-    </a>
-  </li>
-</ul>
-`;
-
 exports[`it renders current page when a string is passed 1`] = `
 <ul
   className="breadcrumb"

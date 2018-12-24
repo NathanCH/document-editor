@@ -1,7 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Breadcrumb from './Breadcrumb.js';
+import Breadcrumb from './Breadcrumb';
+
+test('it does not render current page when prop is null', () => {
+  const component = renderer
+    .create(<Breadcrumb />)
+    .toJSON();
+
+  expect(component).toMatchSnapshot();
+});
 
 test('it renders current page when a string is passed', () => {
   const component = renderer
@@ -11,10 +19,17 @@ test('it renders current page when a string is passed', () => {
   expect(component).toMatchSnapshot();
 });
 
-test('it does not render current page when prop is null', () => {
-  const component = renderer
-    .create(<Breadcrumb />)
-    .toJSON();
+test('it renders `active` class on current breadcrumb ', () => {
+  const component = renderer.create(
+    <Breadcrumb current="Test" />
+  );
 
-  expect(component).toMatchSnapshot();
+  let instance = component.root;
+
+  const item = instance.find(
+    el => el.type == 'li'
+      && el.props.className.includes('active')
+  );
+
+  expect(item).toBeInstanceOf(Object);
 });
