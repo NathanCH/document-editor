@@ -10416,7 +10416,7 @@ a.text-dark:focus {
 }
 
 .main {
-  padding: 5rem 0;
+  padding: 2rem 0;
 }
 
 .navbar-grey {
@@ -10486,5 +10486,15 @@ a.text-dark:focus {
 
 body {
   background: #f8f9fa;
+}
+
+.debug-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: 1;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 

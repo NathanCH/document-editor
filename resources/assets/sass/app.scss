@@ -18,3 +18,12 @@
 body {
   background: $gray-100;
 }
+
+.debug-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: 1;
+  box-shadow: $box-shadow;
+}
