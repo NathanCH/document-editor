@@ -8,11 +8,13 @@ $green:   #7baf22;
 $teal:    #4acbb7;
 $cyan:    #22c0d7;
 
+$primary: $red;
+
 $theme-colors: (
   "primary": $red,
 );
 
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
+$font-family-sans-serif: "Niramit", sans-serif;
+$font-size-base: 1rem;
 $line-height-base: 1.6;

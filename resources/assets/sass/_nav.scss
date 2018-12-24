@@ -1,0 +1,28 @@
+.navbar-grey {
+  background: $gray-100;
+}
+
+.navbar-brand-container {
+  margin: 1.75rem 0;
+}
+
+.navbar-brand {
+  padding-bottom: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2rem
+}
+
+.navbar-brand-icon:after {
+  content: ".";
+  margin-left: -4px;
+  font-size: 26px;
+  font-weight: 600;
+  color: $primary;
+}
+
+.navbar-lead {
+  margin-bottom: 0;
+  font-size: 1.20rem;
+  color: $gray-500;
+}
