@@ -13,7 +13,7 @@ class Documents extends React.Component {
   }
 
   render() {
-    return <View />;
+    return <View request={this.props.request} />;
   }
 }
 

@@ -58,9 +58,9 @@ export function requestFailure() {
 }
 
 export function request() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestFetch());
-    return fetch('/', {
+    return fetch('/api/documents', {
       method: 'GET',
       headers: new Headers({ 'Content-Type': 'application/json' }),
     })
@@ -72,6 +72,7 @@ export function request() {
         dispatch(requestSuccess(body));
       })
       .catch(err => {
+        console.log('failed');
         dispatch(requestFailure(err));
       });
   };

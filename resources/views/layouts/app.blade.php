@@ -42,9 +42,6 @@
                 <a class="dropdown-item" href="{{ route('profile') }}">
                   {{ __('My Profile') }}
                 </a>
-                <a class="dropdown-item" href="{{ route('documents') }}">
-                  {{ __('My Documents') }}
-                </a>
                 <a class="dropdown-item" href="{{ route('pages') }}">
                   {{ __('My Pages') }}
                 </a>
