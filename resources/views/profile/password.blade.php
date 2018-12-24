@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="text-left">
-              <a href="{{ route('profile') }}" class="btn btn-link mb-3">
-                Back to Profile
-              </a>
-          </div>
+        <div class="col-md-12">
+            <div class="text-left">
+                <a href="{{ route('profile') }}" class="btn btn-link mb-3">
+                  Back to Profile
+                </a>
+            </div>
             <div class="card">
                 <div class="card-header">Update Password</div>
                 <div class="card-body">

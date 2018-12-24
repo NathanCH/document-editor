@@ -10415,12 +10415,30 @@ a.text-dark:focus {
   }
 }
 
+.main {
+  padding: 5rem 0;
+}
+
 .navbar-grey {
   background: #f8f9fa;
 }
 
+.navbar-light {
+  background: #fff;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+          box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
 .navbar-brand-container {
   margin: 1.75rem 0;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand-container {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
 }
 
 .navbar-brand {
@@ -10442,5 +10460,30 @@ a.text-dark:focus {
   margin-bottom: 0;
   font-size: 1.20rem;
   color: #adb5bd;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+  }
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 575.98px) {
+  .navbar .dropdown-menu {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+}
+
+body {
+  background: #f8f9fa;
 }
 

@@ -2,8 +2,18 @@
   background: $gray-100;
 }
 
+.navbar-light {
+  background: $white;
+  box-shadow: $box-shadow-sm;
+}
+
 .navbar-brand-container {
   margin: 1.75rem 0;
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
 }
 
 .navbar-brand {
@@ -25,4 +35,21 @@
   margin-bottom: 0;
   font-size: 1.20rem;
   color: $gray-500;
+}
+
+
+.navbar-nav {
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+  }
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  box-shadow: $box-shadow;
+  @include media-breakpoint-down(xs) {
+    box-shadow: none;
+  }
 }

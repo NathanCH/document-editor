@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="text-left">
                 <a href="{{ route('pages') }}" class="btn btn-link mb-3">
                   Back to Pages

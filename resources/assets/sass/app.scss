@@ -12,4 +12,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Layout
+@import "main";
 @import "nav";
+
+body {
+  background: $gray-100;
+}
