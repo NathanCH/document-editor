@@ -7,13 +7,13 @@ const Documents = () => (
   <Fragment>
     <Row>
       <Col>
-        <Breadcrumb />
+        <Breadcrumb current="Documents" />
       </Col>
     </Row>
     <Row className="align-items-end mt-4">
-      <Col xs="12" sm="8">
-        <h2>Browse</h2>
-        <p>2 results found. Show <a href="#" className="text-underline">50</a> per page. </p>
+      <Col>
+        <h2>Documents</h2>
+        <p>2 documents found. Showing <a href="#" className="text-underline">all</a> types.</p>
       </Col>
     </Row>
   </Fragment>

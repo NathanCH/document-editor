@@ -4,17 +4,27 @@ import { Link } from 'react-router-dom';
 
 import './Breadcrumb.scss';
 
-const Breadcrumb = () => (
-  <ul class="breadcrumb">
-    <li class="breadcrumb-item">
+const Breadcrumb = (prop) => (
+  <ul className="breadcrumb">
+    <li className="breadcrumb-item">
       <Link to="/" className="breadcrumb-link">
-        <i class="fa fa-home"></i>
+        <i className="fa fa-home"></i>
       </Link>
     </li>
-    <li class="breadcrumb-item active">
-      Browse
-    </li>
+    {prop.current &&
+      <li className="breadcrumb-item active">
+        {prop.current}
+      </li>
+    }
   </ul>
 );
+
+Breadcrumb.propTypes = {
+  current: PropTypes.string,
+};
+
+Breadcrumb.defaultProps = {
+  current: null,
+};
 
 export default Breadcrumb;

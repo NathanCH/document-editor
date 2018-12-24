@@ -73783,7 +73783,7 @@ var Documents = function Documents() {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_reactstrap__["f" /* Col */],
         null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_components_Breadcrumb__["a" /* default */], null)
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_components_Breadcrumb__["a" /* default */], { current: 'Documents' })
       )
     ),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -73791,22 +73791,22 @@ var Documents = function Documents() {
       { className: 'align-items-end mt-4' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_reactstrap__["f" /* Col */],
-        { xs: '12', sm: '8' },
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
-          'Browse'
+          'Documents'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
           null,
-          '2 results found. Show ',
+          '2 documents found. Showing ',
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'a',
             { href: '#', className: 'text-underline' },
-            '50'
+            'all'
           ),
-          ' per page. '
+          ' types.'
         )
       )
     )
@@ -73843,25 +73843,33 @@ var Documents = function Documents() {
 
 
 
-var Breadcrumb = function Breadcrumb() {
+var Breadcrumb = function Breadcrumb(prop) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'ul',
-    { 'class': 'breadcrumb' },
+    { className: 'breadcrumb' },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'li',
-      { 'class': 'breadcrumb-item' },
+      { className: 'breadcrumb-item' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["a" /* Link */],
         { to: '/', className: 'breadcrumb-link' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { 'class': 'fa fa-home' })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-home' })
       )
     ),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    prop.current && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'li',
-      { 'class': 'breadcrumb-item active' },
-      'Browse'
+      { className: 'breadcrumb-item active' },
+      prop.current
     )
   );
+};
+
+Breadcrumb.propTypes = {
+  current: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+};
+
+Breadcrumb.defaultProps = {
+  current: null
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Breadcrumb);
