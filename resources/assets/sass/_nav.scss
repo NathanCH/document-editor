@@ -50,6 +50,7 @@
   border: none;
   box-shadow: $box-shadow;
   @include media-breakpoint-down(xs) {
+    background: $gray-100;
     box-shadow: none;
   }
 }

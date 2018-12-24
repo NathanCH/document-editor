@@ -10478,6 +10478,7 @@ a.text-dark:focus {
 
 @media (max-width: 575.98px) {
   .navbar .dropdown-menu {
+    background: #f8f9fa;
     -webkit-box-shadow: none;
             box-shadow: none;
   }
