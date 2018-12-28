@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from './Grid';
 import Layout from './Layout';
 
 class Documents extends React.Component {
@@ -13,7 +14,13 @@ class Documents extends React.Component {
   }
 
   render() {
-    return <Layout {...this.props} />;
+    return (
+      <Layout>
+        <Grid 
+          items={this.documents} 
+          loading={this.props.isFetching} />
+      </Layout>
+    );
   }
 }
 
