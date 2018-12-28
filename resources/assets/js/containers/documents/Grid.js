@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import GridItem from './GridItem';
 import Loading from './Loading';
 
 const Grid = props => (
-  <section>
-    My documents
-  </section>
+  <div>
+    {props.items.map(item => (
+      <GridItem 
+        item={item} 
+        key={item.id} />
+    ))}
+  </div>
 );
 
 Grid.propTypes = {

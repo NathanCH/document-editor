@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Breadcrumb.scss';
 
-const Breadcrumb = (prop) => (
+const Breadcrumb = prop => (
   <ul className="breadcrumb">
     <li className="breadcrumb-item">
       <a href="/" className="breadcrumb-link">

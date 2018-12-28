@@ -17,7 +17,7 @@ class Documents extends React.Component {
     return (
       <Layout>
         <Grid 
-          items={this.documents} 
+          items={this.props.documents} 
           loading={this.props.isFetching} />
       </Layout>
     );

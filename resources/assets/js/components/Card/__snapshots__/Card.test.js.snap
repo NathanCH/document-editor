@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> it renders \`props.customSection\` 1`] = `
+<div
+  className="card"
+>
+  <span>
+    Test
+  </span>
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    />
+    <p
+      className="card-text"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Card /> it renders \`props.text\` 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    />
+    <p
+      className="card-text"
+    >
+      World
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Card /> it renders \`props.title\` 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    >
+      Hello
+    </h5>
+    <p
+      className="card-text"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Card /> it renders an empty card 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    />
+    <p
+      className="card-text"
+    />
+  </div>
+</div>
+`;
