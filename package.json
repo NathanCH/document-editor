@@ -40,6 +40,9 @@
   },
   "jest": {
     "moduleNameMapper": {
+      "^app(.*)$": "<rootDir>/resources/assets/js$1",
+      "^components(.*)$": "<rootDir>/resources/assets/js/components$1",
+      "^modules(.*)$": "<rootDir>/resources/assets/js/modules$1",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss|sass)$": "identity-obj-proxy"
     },
