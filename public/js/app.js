@@ -25084,7 +25084,8 @@ exports.default = function () {
       return _extends({}, state, {
         isFetching: false,
         hasError: false,
-        documents: action.payload
+        documents: action.payload,
+        count: action.payload.length
       });
 
     case REQUEST_FAILURE:
@@ -25104,9 +25105,10 @@ function requestFetch() {
   };
 }
 
-function requestSuccess() {
+function requestSuccess(res) {
   return {
-    type: REQUEST_SUCCESS
+    type: REQUEST_SUCCESS,
+    payload: res
   };
 }
 
@@ -25126,9 +25128,8 @@ function request() {
       if (!res.ok) throw Error(res.statusText);
       return res.json();
     }).then(function (body) {
-      dispatch(requestSuccess(body));
+      dispatch(requestSuccess(body.data));
     }).catch(function (err) {
-      console.log('failed');
       dispatch(requestFailure(err));
     });
   };
@@ -74262,6 +74263,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(_ref) {
   var documents = _ref.documents;
   return {
+    documents: documents.documents,
+    count: documents.count,
     isFetching: documents.isFetching,
     hasError: documents.hasError
   };
@@ -74294,9 +74297,9 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _View = __webpack_require__(170);
+var _Layout = __webpack_require__(186);
 
-var _View2 = _interopRequireDefault(_View);
+var _Layout2 = _interopRequireDefault(_Layout);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74323,7 +74326,7 @@ var Documents = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_View2.default, { request: this.props.request });
+      return _react2.default.createElement(_Layout2.default, this.props);
     }
   }]);
 
@@ -74331,12 +74334,16 @@ var Documents = function (_React$Component) {
 }(_react2.default.Component);
 
 Documents.propTypes = {
+  documents: _propTypes2.default.array,
+  count: _propTypes2.default.number,
   isFetching: _propTypes2.default.bool,
   hasError: _propTypes2.default.bool,
   request: _propTypes2.default.func.isRequired
 };
 
 Documents.defaultProps = {
+  documents: [],
+  count: 0,
   isFetching: false,
   hasError: false
 };
@@ -74344,84 +74351,7 @@ Documents.defaultProps = {
 exports.default = Documents;
 
 /***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactstrap = __webpack_require__(26);
-
-var _Breadcrumb = __webpack_require__(171);
-
-var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var View = function View(props) {
-  return _react2.default.createElement(
-    'section',
-    null,
-    _react2.default.createElement(
-      _reactstrap.Row,
-      null,
-      _react2.default.createElement(
-        _reactstrap.Col,
-        null,
-        _react2.default.createElement(_Breadcrumb2.default, { current: 'Documents' })
-      )
-    ),
-    _react2.default.createElement(
-      _reactstrap.Row,
-      { className: 'align-items-end mt-4' },
-      _react2.default.createElement(
-        _reactstrap.Col,
-        null,
-        _react2.default.createElement(
-          'h2',
-          null,
-          'Documents'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          '2 documents found. Showing ',
-          _react2.default.createElement(
-            'a',
-            { href: '#', className: 'text-underline' },
-            'all'
-          ),
-          ' types.'
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: props.request },
-          'Fetch \'em'
-        )
-      )
-    )
-  );
-};
-
-View.propTypes = {
-  request: _propTypes2.default.func.isRequired
-};
-
-exports.default = View;
-
-/***/ }),
+/* 170 */,
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -75024,6 +74954,133 @@ exports.push([module.i, "button:disabled {\n  opacity: 0.5; }\n", ""]);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 185 */,
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactstrap = __webpack_require__(26);
+
+var _Breadcrumb = __webpack_require__(171);
+
+var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Loading = function Loading(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Loading'
+  );
+};
+
+var View = function View(props) {
+  return _react2.default.createElement(
+    _reactstrap.Row,
+    null,
+    _react2.default.createElement(
+      _reactstrap.Col,
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        props.count,
+        ' documents found. Showing ',
+        _react2.default.createElement(
+          'a',
+          { href: '#', className: 'text-underline' },
+          'all'
+        ),
+        ' types.'
+      ),
+      _react2.default.createElement(
+        'button',
+        { onClick: props.request },
+        'Fetch \'em'
+      )
+    )
+  );
+};
+
+View.propTypes = {
+  count: _propTypes2.default.number,
+  request: _propTypes2.default.func.isRequired
+};
+
+View.defaultProps = {
+  count: 0
+};
+
+var Layout = function Layout(props) {
+  var count = props.count,
+      isFetching = props.isFetching,
+      request = props.request;
+
+
+  var Content = isFetching ? _react2.default.createElement(Loading, null) : _react2.default.createElement(View, { count: count, request: request });
+
+  return _react2.default.createElement(
+    'section',
+    null,
+    _react2.default.createElement(
+      _reactstrap.Row,
+      null,
+      _react2.default.createElement(
+        _reactstrap.Col,
+        null,
+        _react2.default.createElement(_Breadcrumb2.default, { current: 'Documents' })
+      )
+    ),
+    _react2.default.createElement(
+      _reactstrap.Row,
+      { className: 'align-items-end mt-4' },
+      _react2.default.createElement(
+        _reactstrap.Col,
+        null,
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Documents'
+        ),
+        Content
+      )
+    )
+  );
+};
+
+Layout.propTypes = {
+  documents: _propTypes2.default.array,
+  count: _propTypes2.default.number,
+  isFetching: _propTypes2.default.bool,
+  hasError: _propTypes2.default.bool,
+  request: _propTypes2.default.func.isRequired
+};
+
+Layout.defaultProps = {
+  documents: [],
+  count: 0,
+  isFetching: false,
+  hasError: false
+};
+
+exports.default = Layout;
 
 /***/ })
 /******/ ]);

@@ -24,6 +24,7 @@ export default (state = initialState, action) => {
         isFetching: false,
         hasError: false,
         documents: action.payload,
+        count: action.payload.length,
       }
 
 
@@ -45,9 +46,10 @@ export function requestFetch() {
   };
 }
 
-export function requestSuccess() {
+export function requestSuccess(res) {
   return {
     type: REQUEST_SUCCESS,
+    payload: res,
   };
 }
 
@@ -69,10 +71,9 @@ export function request() {
         return res.json();
       })
       .then(body => {
-        dispatch(requestSuccess(body));
+        dispatch(requestSuccess(body.data));
       })
       .catch(err => {
-        console.log('failed');
         dispatch(requestFailure(err));
       });
   };

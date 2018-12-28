@@ -4,6 +4,8 @@ import { request } from 'modules/documents';
 import Documents from './Documents';
 
 const mapStateToProps = ({ documents }) => ({
+  documents: documents.documents,
+  count: documents.count,
   isFetching: documents.isFetching,
   hasError: documents.hasError,
 });
