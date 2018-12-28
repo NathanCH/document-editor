@@ -8,38 +8,6 @@ const initialState = {
   hasError: false,
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case REQUEST_FETCH:
-      return {
-        ...state,
-        documents: [],
-        isFetching: true,
-        hasError: false,
-      }
-
-    case REQUEST_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        hasError: false,
-        documents: action.payload,
-        count: action.payload.length,
-      }
-
-
-    case REQUEST_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-        hasError: true,
-      }
-
-    default:
-      return state;
-  }
-};
-
 export function requestFetch() {
   return {
     type: REQUEST_FETCH,
@@ -78,3 +46,34 @@ export function request() {
       });
   };
 }
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case REQUEST_FETCH:
+      return {
+        ...state,
+        documents: [],
+        isFetching: true,
+        hasError: false,
+      }
+
+    case REQUEST_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        hasError: false,
+        documents: action.payload,
+        count: action.payload.length,
+      }
+
+    case REQUEST_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        hasError: true,
+      }
+
+    default:
+      return state;
+  }
+};
