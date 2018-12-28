@@ -4,8 +4,6 @@ import { Container, Col, Nav, NavItem, NavLink, Row } from 'reactstrap';
 
 import About from '../about';
 import Documents from '../documents';
-import Editor from '../editor';
-import Home from '../home';
 
 const App = () => (
   <Container>
@@ -13,8 +11,6 @@ const App = () => (
       <Col>
         <main>
           <Route exact path="/" component={Documents} />
-          <Route exact path="/editor" component={Editor} />
-          <Route exact path="/home" component={Home} />
           <Route exact path="/about-us" component={About} />
         </main>
       </Col>
@@ -27,13 +23,7 @@ const App = () => (
               <NavLink tag={Link} to="/">Documents</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/home">Home</NavLink>
-            </NavItem>
-            <NavItem>
               <NavLink tag={Link} to="/about-us">About</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/editor">Editor</NavLink>
             </NavItem>
           </Nav>
         </Col>
