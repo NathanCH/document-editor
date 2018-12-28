@@ -3,33 +3,37 @@ import renderer from 'react-test-renderer';
 
 import Breadcrumb from './Breadcrumb';
 
-test('it does not render current page when prop is null', () => {
-  const component = renderer
-    .create(<Breadcrumb />)
-    .toJSON();
+describe('<BreadCrumb />', () => {
 
-  expect(component).toMatchSnapshot();
-});
+  test('it does not render current page when prop is null', () => {
+    const component = renderer
+      .create(<Breadcrumb />)
+      .toJSON();
 
-test('it renders current page when a string is passed', () => {
-  const component = renderer
-    .create(<Breadcrumb current="Test" />)
-    .toJSON();
+    expect(component).toMatchSnapshot();
+  });
 
-  expect(component).toMatchSnapshot();
-});
+  test('it renders current page when a string is passed', () => {
+    const component = renderer
+      .create(<Breadcrumb current="Test" />)
+      .toJSON();
 
-test('it renders `active` class on current breadcrumb ', () => {
-  const component = renderer.create(
-    <Breadcrumb current="Test" />
-  );
+    expect(component).toMatchSnapshot();
+  });
 
-  let instance = component.root;
+  test('it renders `active` class on current breadcrumb ', () => {
+    const component = renderer.create(
+      <Breadcrumb current="Test" />
+    );
 
-  const item = instance.find(
-    el => el.type == 'li'
-      && el.props.className.includes('active')
-  );
+    let instance = component.root;
 
-  expect(item).toBeInstanceOf(Object);
+    const item = instance.find(
+      el => el.type == 'li'
+        && el.props.className.includes('active')
+    );
+
+    expect(item).toBeInstanceOf(Object);
+  });
+
 });

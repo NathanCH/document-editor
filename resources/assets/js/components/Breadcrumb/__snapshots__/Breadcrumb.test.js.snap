@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it does not render current page when prop is null 1`] = `
+exports[`<BreadCrumb /> it does not render current page when prop is null 1`] = `
 <ul
   className="breadcrumb"
 >
@@ -19,7 +19,7 @@ exports[`it does not render current page when prop is null 1`] = `
 </ul>
 `;
 
-exports[`it renders current page when a string is passed 1`] = `
+exports[`<BreadCrumb /> it renders current page when a string is passed 1`] = `
 <ul
   className="breadcrumb"
 >
