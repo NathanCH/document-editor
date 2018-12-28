@@ -4,6 +4,7 @@ export const REQUEST_FAILURE = 'REQUEST_FAILURE';
 
 const initialState = {
   documents: [],
+  count: 0,
   isFetching: false,
   hasError: false,
 };

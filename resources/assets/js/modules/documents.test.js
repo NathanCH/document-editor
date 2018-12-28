@@ -12,7 +12,16 @@ import {
   default as reducer,
 } from './documents.js';
 
-describe('Document reducer', () => {
+const mockDocuments = [
+  {
+    id: 1,
+    title: 'Mocked Document',
+    created_at: '',
+    updated_at: '',
+  },
+];
+
+describe('Document - Reducer', () => {
 
   let initialState;
 
@@ -20,8 +29,81 @@ describe('Document reducer', () => {
     initialState = reducer(undefined, {});
   });
 
-  test('it runs', () => {
-    console.log(initialState);
+  test('it should be a function', () => {
+    expect(reducer).toBeInstanceOf(Function);
+  });
+
+  test('it should handle `REQUEST_FETCH` action', () => {
+    expect(reducer(undefined, {
+      type: 'REQUEST_FETCH',
+    })).toMatchObject({
+      documents: [],
+      isFetching: true,
+      hasError: false,
+    });
+  });
+
+  test('it should handle `REQUEST_SUCCESS` action', () => {
+    expect(reducer(undefined, {
+      type: 'REQUEST_SUCCESS',
+      payload: [],
+    })).toMatchObject({
+      documents: [],
+      isFetching: false,
+      hasError: false,
+    });
+  });
+
+  test('it should handle `REQUEST_FAILURE` action', () => {
+    expect(reducer(undefined, {
+      type: 'REQUEST_FAILURE',
+    })).toMatchObject({
+      documents: [],
+      isFetching: false,
+      hasError: true,
+    });
+  });
+
+});
+
+describe('Document - Action Creators', () => {
+
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
+  it('creates `REQUEST_FETCH` and `REQUEST_SUCCESS` on request() success', () => {
+    fetch.mockResponse(JSON.stringify({ data: mockDocuments }));
+
+    const expectedActions = [
+      { type: 'REQUEST_FETCH' },
+      { type: 'REQUEST_SUCCESS', payload: mockDocuments },
+    ];
+
+    const store = mockStore({});
+
+    return store
+      .dispatch(request())
+      .then(() => {
+        expect(store.getActions()).toMatchObject(expectedActions);
+      });
+  });
+
+  it('creates `REQUEST_FETCH` and `REQUEST_FAILURE` on request() error', () => {
+    fetch.mockReject(new Error('Whoops!'));
+
+    const expectedActions = [
+      { type: 'REQUEST_FETCH' },
+      { type: 'REQUEST_FAILURE' },
+    ];
+
+    const store = mockStore({});
+
+    return store
+      .dispatch(request())
+      .then(() => {
+        expect(store.getActions()).toMatchObject(expectedActions);
+      });
   });
 
 });
