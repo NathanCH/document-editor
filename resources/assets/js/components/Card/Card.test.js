@@ -4,8 +4,7 @@ import renderer from 'react-test-renderer';
 import Card from './Card';
 
 describe('<Card />', () => {
-
-  test('it renders an empty card', () => {
+  test('it renders without props', () => {
     const component = renderer
       .create(<Card />)
       .toJSON();

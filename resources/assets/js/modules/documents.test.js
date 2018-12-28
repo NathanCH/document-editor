@@ -22,7 +22,6 @@ const mockDocuments = [
 ];
 
 describe('Document - Reducer', () => {
-
   let initialState;
 
   beforeEach(() => {
@@ -67,7 +66,6 @@ describe('Document - Reducer', () => {
 });
 
 describe('Document - Action Creators', () => {
-
   beforeEach(() => {
     fetch.resetMocks();
   });

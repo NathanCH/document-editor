@@ -4,7 +4,6 @@ import Grid from './Grid';
 import Layout from './Layout';
 
 class Documents extends React.Component {
-
   constructor() {
     super();
   }

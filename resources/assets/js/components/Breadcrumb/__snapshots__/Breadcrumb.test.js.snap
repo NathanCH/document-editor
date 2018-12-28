@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BreadCrumb /> it does not render current page when prop is null 1`] = `
-<ul
-  className="breadcrumb"
->
-  <li
-    className="breadcrumb-item"
-  >
-    <a
-      className="breadcrumb-link"
-      href="/"
-    >
-      <i
-        className="fa fa-home"
-      />
-    </a>
-  </li>
-</ul>
-`;
-
-exports[`<BreadCrumb /> it renders current page when a string is passed 1`] = `
+exports[`<BreadCrumb /> it renders \`props.current\` 1`] = `
 <ul
   className="breadcrumb"
 >
@@ -39,6 +20,25 @@ exports[`<BreadCrumb /> it renders current page when a string is passed 1`] = `
     className="breadcrumb-item active"
   >
     Test
+  </li>
+</ul>
+`;
+
+exports[`<BreadCrumb /> it renders without props 1`] = `
+<ul
+  className="breadcrumb"
+>
+  <li
+    className="breadcrumb-item"
+  >
+    <a
+      className="breadcrumb-link"
+      href="/"
+    >
+      <i
+        className="fa fa-home"
+      />
+    </a>
   </li>
 </ul>
 `;

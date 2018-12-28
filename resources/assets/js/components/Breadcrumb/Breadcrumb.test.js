@@ -4,8 +4,7 @@ import renderer from 'react-test-renderer';
 import Breadcrumb from './Breadcrumb';
 
 describe('<BreadCrumb />', () => {
-
-  test('it does not render current page when prop is null', () => {
+  test('it renders without props', () => {
     const component = renderer
       .create(<Breadcrumb />)
       .toJSON();
@@ -13,7 +12,7 @@ describe('<BreadCrumb />', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('it renders current page when a string is passed', () => {
+  test('it renders `props.current`', () => {
     const component = renderer
       .create(<Breadcrumb current="Test" />)
       .toJSON();

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import Documents from './Documents';
 
 describe('<Documents />', () => {
-
   let spies, props, component;
 
   beforeEach(() => {

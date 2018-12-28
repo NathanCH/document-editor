@@ -58,7 +58,7 @@ exports[`<Card /> it renders \`props.title\` 1`] = `
 </div>
 `;
 
-exports[`<Card /> it renders an empty card 1`] = `
+exports[`<Card /> it renders without props 1`] = `
 <div
   className="card"
 >
