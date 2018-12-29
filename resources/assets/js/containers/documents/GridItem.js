@@ -18,7 +18,7 @@ const GridItem = props => {
   const formattedDate = 
     moment(props.item.updated_at).format('MMM D, YYYY h:ma');
 
-  const GridCardText = () => (
+  const GridItemText = () => (
     <span>
       <i className="far fa-clock"></i> {formattedDate}
     </span>
@@ -29,7 +29,7 @@ const GridItem = props => {
       className="grid-item"
       customSection={<GridItemThumb />}
       title={props.item.title} 
-      text={<GridCardText />} />
+      text={<GridItemText />} />
   );
 };
 

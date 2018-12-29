@@ -1,18 +1,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { bindActionCreators } from 'redux';
 import Grid from './Grid';
 
 const mockItems = [
   {
     id: 1,
-    title: 'Mocked Document',
+    title: 'Mocked document',
     created_at: '',
     updated_at: '',
   },
   {
     id: 2,
-    title: 'Mocked Document',
+    title: 'Second mocked document',
     created_at: '',
     updated_at: '',
   },

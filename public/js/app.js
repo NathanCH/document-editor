@@ -90736,7 +90736,7 @@ var GridItem = function GridItem(props) {
 
   var formattedDate = (0, _moment2.default)(props.item.updated_at).format('MMM D, YYYY h:ma');
 
-  var GridCardText = function GridCardText() {
+  var GridItemText = function GridItemText() {
     return _react2.default.createElement(
       'span',
       null,
@@ -90750,7 +90750,7 @@ var GridItem = function GridItem(props) {
     className: 'grid-item',
     customSection: _react2.default.createElement(GridItemThumb, null),
     title: props.item.title,
-    text: _react2.default.createElement(GridCardText, null) });
+    text: _react2.default.createElement(GridItemText, null) });
 };
 
 GridItem.propTypes = {
