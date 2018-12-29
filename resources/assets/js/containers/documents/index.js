@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { request } from 'modules/documents';
+import { request, setView } from 'modules/documents';
 import Documents from './Documents';
 
 const mapStateToProps = ({ documents }) => ({
@@ -11,7 +11,10 @@ const mapStateToProps = ({ documents }) => ({
 });
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ request }, dispatch)
+  bindActionCreators({ 
+    request,
+    setView,
+  }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Documents);

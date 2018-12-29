@@ -29438,15 +29438,18 @@ exports.requestFetch = requestFetch;
 exports.requestSuccess = requestSuccess;
 exports.requestFailure = requestFailure;
 exports.request = request;
+exports.setView = setView;
 var REQUEST_FETCH = exports.REQUEST_FETCH = 'REQUEST_FETCH';
 var REQUEST_SUCCESS = exports.REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 var REQUEST_FAILURE = exports.REQUEST_FAILURE = 'REQUEST_FAILURE';
+var SET_VIEW = exports.SET_VIEW = 'SET_VIEW';
 
 var initialState = {
   documents: [],
   count: 0,
   isFetching: false,
-  hasError: false
+  hasError: false,
+  view: 'grid'
 };
 
 function requestFetch() {
@@ -29485,6 +29488,13 @@ function request() {
   };
 }
 
+function setView(viewString) {
+  return {
+    type: SET_VIEW,
+    payload: viewString
+  };
+}
+
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
@@ -29509,6 +29519,11 @@ exports.default = function () {
       return _extends({}, state, {
         isFetching: false,
         hasError: true
+      });
+
+    case SET_VIEW:
+      return _extends({}, state, {
+        view: action.payload
       });
 
     default:
@@ -90545,7 +90560,10 @@ var mapStateToProps = function mapStateToProps(_ref) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ request: _documents.request }, dispatch);
+  return (0, _redux.bindActionCreators)({
+    request: _documents.request,
+    setView: _documents.setView
+  }, dispatch);
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Documents2.default);
@@ -90626,6 +90644,7 @@ var Documents = function (_React$Component) {
           _Layout2.default.Section,
           null,
           _react2.default.createElement(_Filter2.default, {
+            setView: this.props.setView,
             isFetching: this.props.isFetching })
         ),
         _react2.default.createElement(
@@ -90647,7 +90666,8 @@ Documents.propTypes = {
   count: _propTypes2.default.number,
   isFetching: _propTypes2.default.bool,
   hasError: _propTypes2.default.bool,
-  request: _propTypes2.default.func.isRequired
+  request: _propTypes2.default.func.isRequired,
+  setView: _propTypes2.default.func.isRequired
 };
 
 Documents.defaultProps = {
@@ -91765,6 +91785,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -91781,28 +91803,60 @@ var _Loading2 = _interopRequireDefault(_Loading);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Filter = function Filter(props) {
-  return _react2.default.createElement(
-    _reactstrap.ButtonGroup,
-    null,
-    _react2.default.createElement(
-      _reactstrap.Button,
-      { color: 'secondary' },
-      _react2.default.createElement('i', { className: 'fas fa-fw fa-grip-horizontal' }),
-      ' Grid'
-    ),
-    _react2.default.createElement(
-      _reactstrap.Button,
-      { color: 'secondary' },
-      _react2.default.createElement('i', { className: 'fas fa-fw fa-list' }),
-      ' List'
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Filter = function (_React$Component) {
+  _inherits(Filter, _React$Component);
+
+  function Filter() {
+    _classCallCheck(this, Filter);
+
+    var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Filter, [{
+    key: 'handleClick',
+    value: function handleClick(e) {
+      this.props.setView(e.target.getAttribute('filter-type'));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactstrap.ButtonGroup,
+        null,
+        _react2.default.createElement(
+          _reactstrap.Button,
+          { color: 'secondary', onClick: this.handleClick, 'filter-type': 'grid' },
+          _react2.default.createElement('i', { className: 'fas fa-fw fa-grip-horizontal' }),
+          ' Grid'
+        ),
+        _react2.default.createElement(
+          _reactstrap.Button,
+          { color: 'secondary', onClick: this.handleClick, 'filter-type': 'list' },
+          _react2.default.createElement('i', { className: 'fas fa-fw fa-list' }),
+          ' List'
+        )
+      );
+    }
+  }]);
+
+  return Filter;
+}(_react2.default.Component);
+
+;
 
 Filter.propTypes = {
   isFetching: _propTypes2.default.bool,
-  hasError: _propTypes2.default.bool
+  hasError: _propTypes2.default.bool,
+  setView: _propTypes2.default.func.isRequired
 };
 
 Filter.defaultProps = {

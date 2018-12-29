@@ -24,6 +24,7 @@ class Documents extends React.Component {
         </Layout.Section>
         <Layout.Section>
           <Filter
+            setView={this.props.setView}
             isFetching={this.props.isFetching} />
         </Layout.Section>
         <Layout.Section>
@@ -42,6 +43,7 @@ Documents.propTypes = {
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
   request: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
 };
 
 Documents.defaultProps = {

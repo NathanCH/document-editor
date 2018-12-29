@@ -63,6 +63,15 @@ describe('Document - Reducer', () => {
     });
   });
 
+  test('it should handle `SET_VIEW` action', () => {
+    expect(reducer(undefined, {
+      type: 'SET_VIEW',
+      payload: 'list',
+    })).toMatchObject({
+      view: 'list',
+    });
+  });
+
 });
 
 describe('Document - Action Creators', () => {
