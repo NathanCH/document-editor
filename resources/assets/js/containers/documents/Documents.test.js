@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { bindActionCreators } from 'redux';
-
 import Documents from './Documents';
 
 describe('<Documents />', () => {

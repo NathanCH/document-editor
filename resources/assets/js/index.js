@@ -9,13 +9,15 @@ import './index.scss';
 
 const elm = document.querySelector('#root');
 
-var connectedApp =
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
-    </ConnectedRouter>
-  </Provider>;
+if (elm) {
+  var connectedApp =
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <App />
+        </div>
+      </ConnectedRouter>
+    </Provider>;
 
-render(connectedApp, elm);
+  render(connectedApp, elm);
+}

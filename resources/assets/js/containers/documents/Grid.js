@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import GridItem from './GridItem';
 import Loading from './Loading';
 
+import './Grid.scss';
+
 const Grid = props => (
-  <div>
+  <div className="grid">
     {props.items.map(item => (
       <GridItem 
         item={item} 

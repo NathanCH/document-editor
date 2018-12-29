@@ -12,8 +12,8 @@ import './Card.scss';
 
 const CardWrapper = props => (
   <Card className={props.className}>
-    {props.customSection}
     <CardBody>
+      {props.customSection}
       <CardTitle>{props.title}</CardTitle>
       <CardText>{props.text}</CardText>
     </CardBody>
@@ -23,15 +23,21 @@ const CardWrapper = props => (
 CardWrapper.propTypes = {
   className: PropTypes.string,
   customSection: PropTypes.element,
-  title: PropTypes.string,
-  text: PropTypes.string,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
 
 CardWrapper.defaultProps = {
   className: '',
   customSection: null,
-  title: null,
-  text: null,
+  title: '',
+  text: '',
 };
 
 export default CardWrapper;

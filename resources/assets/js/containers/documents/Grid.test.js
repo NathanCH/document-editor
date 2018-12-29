@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { bindActionCreators } from 'redux';
-
 import Grid from './Grid';
 
 const mockItems = [

@@ -1,0 +1,10 @@
+@import './resources/assets/sass/app';
+
+.card-title {
+  color: $body-color;
+  font-weight: $font-weight-bold;
+}
+
+.card-text {
+  color: $text-muted;
+}

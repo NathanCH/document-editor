@@ -1,0 +1,13 @@
+@import './resources/assets/sass/app';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include media-breakpoint-down(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}

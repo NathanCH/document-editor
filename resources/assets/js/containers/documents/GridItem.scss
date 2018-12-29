@@ -1,0 +1,34 @@
+@import './resources/assets/sass/app';
+
+.grid-item {}
+
+.grid-item-thumb {
+  position: relative;
+  text-align: center;
+}
+
+.grid-item-thumb .fa-file-alt {
+  font-size: 7rem;
+  line-height: 16rem;
+  color: $gray-200;
+}
+
+.grid-item-button {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 3rem;
+  width: 3rem;
+  height: 3rem;
+  background: none;
+  &:hover {
+    background: $gray-100;
+  }
+}
+
+.grid-item-thumb .fa-ellipsis-v {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: $primary;
+}
