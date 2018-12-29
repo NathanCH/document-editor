@@ -7,11 +7,14 @@ $orange:  #e58825;
 $green:   #7baf22;
 $teal:    #4acbb7;
 $cyan:    #22c0d7;
+$white:   #ffffff;
 
-$primary: $red;
+$primary:   $red;
+$secondary: $white;
 
 $theme-colors: (
   "primary": $red,
+  "secondary": $white,
 );
 
 // Typography

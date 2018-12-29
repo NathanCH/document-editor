@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Filter from './Filter';
 import Grid from './Grid';
 import Layout from './Layout';
 import Paginate from './Paginate';
@@ -18,6 +19,11 @@ class Documents extends React.Component {
       <Layout.Container>
         <Layout.Section>
           <Paginate.Info
+            count={this.props.count}
+            isFetching={this.props.isFetching} />
+        </Layout.Section>
+        <Layout.Section>
+          <Filter
             isFetching={this.props.isFetching} />
         </Layout.Section>
         <Layout.Section>
