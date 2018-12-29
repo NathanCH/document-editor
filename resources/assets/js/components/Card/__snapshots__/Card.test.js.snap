@@ -4,18 +4,22 @@ exports[`<Card /> it renders \`props.customSection\` 1`] = `
 <div
   className="card"
 >
-  <span>
-    Test
-  </span>
   <div
     className="card-body"
   >
+    <span>
+      Test
+    </span>
     <h5
       className="card-title"
-    />
+    >
+      
+    </h5>
     <p
       className="card-text"
-    />
+    >
+      
+    </p>
   </div>
 </div>
 `;
@@ -29,7 +33,9 @@ exports[`<Card /> it renders \`props.text\` 1`] = `
   >
     <h5
       className="card-title"
-    />
+    >
+      
+    </h5>
     <p
       className="card-text"
     >
@@ -53,7 +59,9 @@ exports[`<Card /> it renders \`props.title\` 1`] = `
     </h5>
     <p
       className="card-text"
-    />
+    >
+      
+    </p>
   </div>
 </div>
 `;
@@ -67,10 +75,14 @@ exports[`<Card /> it renders without props 1`] = `
   >
     <h5
       className="card-title"
-    />
+    >
+      
+    </h5>
     <p
       className="card-text"
-    />
+    >
+      
+    </p>
   </div>
 </div>
 `;
