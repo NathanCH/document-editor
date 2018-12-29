@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from './Grid';
 import Layout from './Layout';
+import Paginate from './Paginate';
 
 class Documents extends React.Component {
   constructor() {
@@ -14,11 +15,17 @@ class Documents extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Grid 
-          items={this.props.documents} 
-          loading={this.props.isFetching} />
-      </Layout>
+      <Layout.Container>
+        <Layout.Section>
+          <Paginate.Info
+            isFetching={this.props.isFetching} />
+        </Layout.Section>
+        <Layout.Section>
+          <Grid 
+            items={this.props.documents} 
+            isFetching={this.props.isFetching} />
+        </Layout.Section>
+      </Layout.Container>
     );
   }
 }

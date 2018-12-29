@@ -90579,6 +90579,10 @@ var _Layout = __webpack_require__(305);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
+var _Paginate = __webpack_require__(314);
+
+var _Paginate2 = _interopRequireDefault(_Paginate);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -90605,11 +90609,21 @@ var Documents = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        _Layout2.default,
+        _Layout2.default.Container,
         null,
-        _react2.default.createElement(_Grid2.default, {
-          items: this.props.documents,
-          loading: this.props.isFetching })
+        _react2.default.createElement(
+          _Layout2.default.Section,
+          null,
+          _react2.default.createElement(_Paginate2.default.Info, {
+            isFetching: this.props.isFetching })
+        ),
+        _react2.default.createElement(
+          _Layout2.default.Section,
+          null,
+          _react2.default.createElement(_Grid2.default, {
+            items: this.props.documents,
+            isFetching: this.props.isFetching })
+        )
       );
     }
   }]);
@@ -90679,12 +90693,12 @@ var Grid = function Grid(props) {
 
 Grid.propTypes = {
   items: _propTypes2.default.array,
-  loading: _propTypes2.default.bool
+  isFetching: _propTypes2.default.bool
 };
 
 Grid.defaultProps = {
   items: [],
-  loading: false
+  isFetching: false
 };
 
 exports.default = (0, _Loading2.default)(Grid);
@@ -91450,7 +91464,7 @@ var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Layout = function Layout(props) {
+var Container = function Container(props) {
   return _react2.default.createElement(
     'section',
     null,
@@ -91480,8 +91494,29 @@ var Layout = function Layout(props) {
   );
 };
 
-Layout.propTypes = {
+Container.propTypes = {
+  children: _propTypes2.default.any.isRequired
+};
+
+var Section = function Section(props) {
+  return _react2.default.createElement(
+    _reactstrap.Row,
+    { className: 'mb-5' },
+    _react2.default.createElement(
+      _reactstrap.Col,
+      null,
+      props.children
+    )
+  );
+};
+
+_reactstrap.Row.propTypes = {
   children: _propTypes2.default.element.isRequired
+};
+
+var Layout = {
+  Container: Container,
+  Section: Section
 };
 
 exports.default = Layout;
@@ -91654,6 +91689,59 @@ exports.push([module.i, "button:disabled {\n  opacity: 0.5; }\n", ""]);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 313 */,
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Loading = __webpack_require__(302);
+
+var _Loading2 = _interopRequireDefault(_Loading);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Info = function Info(props) {
+  return _react2.default.createElement(
+    'span',
+    null,
+    props.count,
+    ' results found.'
+  );
+};
+
+Info.propTypes = {
+  count: _propTypes2.default.number,
+  isFetching: _propTypes2.default.bool,
+  hasError: _propTypes2.default.bool
+};
+
+Info.defaultProps = {
+  count: 0,
+  isFetching: false,
+  hasError: false
+};
+
+var Paginate = {
+  Info: (0, _Loading2.default)(Info)
+};
+
+exports.default = Paginate;
 
 /***/ })
 /******/ ]);

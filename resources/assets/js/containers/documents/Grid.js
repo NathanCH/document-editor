@@ -17,12 +17,12 @@ const Grid = props => (
 
 Grid.propTypes = {
   items: PropTypes.array,
-  loading: PropTypes.bool,
+  isFetching: PropTypes.bool,
 };
 
 Grid.defaultProps = {
   items: [],
-  loading: false,
+  isFetching: false,
 };
 
 export default Loading(Grid);

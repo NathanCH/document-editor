@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Col, Nav, Row } from 'reactstrap';
 import Breadcrumb from 'components/Breadcrumb';
 
-const Layout = props => (
+const Container = props => (
   <section>
     <Row>
       <Col>
@@ -19,8 +19,23 @@ const Layout = props => (
   </section>
 );
 
-Layout.propTypes = {
+Container.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+
+const Section = props => (
+  <Row className="mb-5">
+    <Col>{props.children}</Col>
+  </Row>
+);
+
+Row.propTypes = {
   children: PropTypes.element.isRequired,
 };
+
+const Layout = {
+  Container: Container,
+  Section: Section,
+}
 
 export default Layout;

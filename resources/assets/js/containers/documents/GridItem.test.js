@@ -23,11 +23,11 @@ describe('<GridItem />', () => {
     expect(foundCard).toBeTruthy();
   });
 
-  test('it renders dropdown when button toggle is clicked', () => {
+  test('it renders dropdown when `.grid-item-toggle` is clicked', () => {
     const component = renderer
       .create(<GridItem item={mockItem} />);
 
-    const getButtonToggle = el =>
+    const gridItemToggle = el =>
       el.props.tag == 'button' && el.props.className == 'grid-item-toggle';
 
     const isVisible = el =>
@@ -35,7 +35,7 @@ describe('<GridItem />', () => {
 
     let instance = component.root,
         isDropdownVisible = instance.findAll(isVisible),
-        button = instance.find(getButtonToggle);
+        button = instance.find(gridItemToggle);
 
     expect(isDropdownVisible).toHaveLength(0);
 
