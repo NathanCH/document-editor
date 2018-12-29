@@ -21,9 +21,8 @@ describe('<BreadCrumb />', () => {
   });
 
   test('it renders `active` class on current breadcrumb ', () => {
-    const component = renderer.create(
-      <Breadcrumb current="Test" />
-    );
+    const component = renderer
+      .create(<Breadcrumb current="Test" />);
 
     let instance = component.root;
 

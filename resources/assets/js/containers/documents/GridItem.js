@@ -13,6 +13,7 @@ const GridItem = props => {
 
   return (
     <Card
+      className="grid-item"
       customSection={<GridItemHeader />}
       title={props.item.title} 
       text={props.item.updated_at} />
