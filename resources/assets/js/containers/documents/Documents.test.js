@@ -11,7 +11,8 @@ describe('<Documents />', () => {
     props = {
       ...bindActionCreators({
         request: (spies.request = jest.fn()),
-        setView: (spies.setView = jest.fn()),
+        filterView: (spies.filterView = jest.fn()),
+        sortView: (spies.sortView = jest.fn()),
       }, spies.dispatch = jest.fn()),
     };
     component = renderer.create(<Documents {...props} />);

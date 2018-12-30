@@ -9,7 +9,8 @@ import {
   REQUEST_SUCCESS,
   REQUEST_FAILURE,
   request,
-  setView,
+  filterView,
+  sortView,
   default as reducer,
 } from './documents.js';
 
@@ -64,12 +65,21 @@ describe('Document - Reducer', () => {
     });
   });
 
-  test('it should handle `SET_VIEW` action', () => {
+  test('it should handle `FILTER_VIEW` action', () => {
     expect(reducer(undefined, {
-      type: 'SET_VIEW',
+      type: 'FILTER_VIEW',
       payload: 'list',
     })).toMatchObject({
       view: 'list',
+    });
+  });
+
+  test('it should handle `SORT_VIEW` action', () => {
+    expect(reducer(undefined, {
+      type: 'SORT_VIEW',
+      payload: 'date_asc',
+    })).toMatchObject({
+      sort: 'date_asc',
     });
   });
 
@@ -110,14 +120,26 @@ describe('Document - Action Creators', () => {
       .then(() => expect(store.getActions()).toMatchObject(expectedActions));
   });
 
-  it('creates `SET_VIEW` action on setView() event', () => {
+  it('creates `FILTER_VIEW` action on filterView() event', () => {
     const expectedActions = [
-      { type: 'SET_VIEW', payload: 'list' },
+      { type: 'FILTER_VIEW', payload: 'list' },
     ];
 
     const store = mockStore({});
 
-    store.dispatch(setView('list'));
+    store.dispatch(filterView('list'));
+
+    expect(store.getActions()).toMatchObject(expectedActions);
+  });
+
+  it('creates `SORT_VIEW` action on sortView() event', () => {
+    const expectedActions = [
+      { type: 'SORT_VIEW', payload: 'date_asc' },
+    ];
+
+    const store = mockStore({});
+
+    store.dispatch(sortView('date_asc'));
 
     expect(store.getActions()).toMatchObject(expectedActions);
   });

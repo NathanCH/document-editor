@@ -11,12 +11,12 @@ class Filter extends React.Component {
   }
 
   handleClick(e) {
-    this.props.setView(e.currentTarget.value);
+    this.props.filterView(e.currentTarget.value);
   }
 
   render() {
     return (
-      <ButtonGroup>
+      <ButtonGroup className="text-nowrap">
         <Button color="secondary" onClick={this.handleClick} value="grid">
           <i className="fas fa-fw fa-grip-horizontal"></i> Grid
         </Button>
@@ -31,7 +31,7 @@ class Filter extends React.Component {
 Filter.propTypes = {
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
-  setView: PropTypes.func.isRequired,
+  filterView: PropTypes.func.isRequired,
 };
 
 Filter.defaultProps = {

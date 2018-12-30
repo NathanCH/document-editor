@@ -29494,18 +29494,21 @@ exports.requestFetch = requestFetch;
 exports.requestSuccess = requestSuccess;
 exports.requestFailure = requestFailure;
 exports.request = request;
-exports.setView = setView;
+exports.filterView = filterView;
+exports.sortView = sortView;
 var REQUEST_FETCH = exports.REQUEST_FETCH = 'REQUEST_FETCH';
 var REQUEST_SUCCESS = exports.REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 var REQUEST_FAILURE = exports.REQUEST_FAILURE = 'REQUEST_FAILURE';
-var SET_VIEW = exports.SET_VIEW = 'SET_VIEW';
+var FILTER_VIEW = exports.FILTER_VIEW = 'FILTER_VIEW';
+var SORT_VIEW = exports.SORT_VIEW = 'SORT_VIEW';
 
 var initialState = {
   documents: [],
   count: 0,
   isFetching: false,
   hasError: false,
-  view: 'grid'
+  view: 'grid',
+  sort: 'date_desc'
 };
 
 function requestFetch() {
@@ -29543,10 +29546,17 @@ function request() {
   };
 }
 
-function setView(viewString) {
+function filterView(viewString) {
   return {
-    type: SET_VIEW,
+    type: FILTER_VIEW,
     payload: viewString
+  };
+}
+
+function sortView(sortString) {
+  return {
+    type: SORT_VIEW,
+    payload: sortString
   };
 }
 
@@ -29576,9 +29586,14 @@ exports.default = function () {
         hasError: true
       });
 
-    case SET_VIEW:
+    case FILTER_VIEW:
       return _extends({}, state, {
         view: action.payload
+      });
+
+    case SORT_VIEW:
+      return _extends({}, state, {
+        sort: action.payload
       });
 
     default:
@@ -90637,7 +90652,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({
     request: _documents.request,
-    setView: _documents.setView
+    filterView: _documents.filterView,
+    sortView: _documents.sortView
   }, dispatch);
 };
 
@@ -90664,6 +90680,8 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _reactstrap = __webpack_require__(11);
+
 var _Filter = __webpack_require__(294);
 
 var _Filter2 = _interopRequireDefault(_Filter);
@@ -90683,6 +90701,10 @@ var _List2 = _interopRequireDefault(_List);
 var _Paginate = __webpack_require__(321);
 
 var _Paginate2 = _interopRequireDefault(_Paginate);
+
+var _Sort = __webpack_require__(326);
+
+var _Sort2 = _interopRequireDefault(_Sort);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -90732,9 +90754,24 @@ var Documents = function (_React$Component) {
         _react2.default.createElement(
           _Layout2.default.Section,
           null,
-          _react2.default.createElement(_Filter2.default, {
-            setView: this.props.setView,
-            isFetching: this.props.isFetching })
+          _react2.default.createElement(
+            _reactstrap.Row,
+            null,
+            _react2.default.createElement(
+              _reactstrap.Col,
+              { xs: '6', lg: '8' },
+              _react2.default.createElement(_Filter2.default, {
+                filterView: this.props.filterView,
+                isFetching: this.props.isFetching })
+            ),
+            _react2.default.createElement(
+              _reactstrap.Col,
+              { xs: '6', lg: '4' },
+              _react2.default.createElement(_Sort2.default, {
+                sortView: this.props.sortView,
+                isFetching: this.props.isFetching })
+            )
+          )
         ),
         _react2.default.createElement(
           _Layout2.default.Section,
@@ -90755,7 +90792,8 @@ Documents.propTypes = {
   hasError: _propTypes2.default.bool,
   view: _propTypes2.default.string,
   request: _propTypes2.default.func.isRequired,
-  setView: _propTypes2.default.func.isRequired
+  filterView: _propTypes2.default.func.isRequired,
+  sortView: _propTypes2.default.func.isRequired
 };
 
 Documents.defaultProps = {
@@ -90818,14 +90856,14 @@ var Filter = function (_React$Component) {
   _createClass(Filter, [{
     key: 'handleClick',
     value: function handleClick(e) {
-      this.props.setView(e.currentTarget.value);
+      this.props.filterView(e.currentTarget.value);
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         _reactstrap.ButtonGroup,
-        null,
+        { className: 'text-nowrap' },
         _react2.default.createElement(
           _reactstrap.Button,
           { color: 'secondary', onClick: this.handleClick, value: 'grid' },
@@ -90850,7 +90888,7 @@ var Filter = function (_React$Component) {
 Filter.propTypes = {
   isFetching: _propTypes2.default.bool,
   hasError: _propTypes2.default.bool,
-  setView: _propTypes2.default.func.isRequired
+  filterView: _propTypes2.default.func.isRequired
 };
 
 Filter.defaultProps = {
@@ -92219,6 +92257,125 @@ exports.push([module.i, "button:disabled {\n  opacity: 0.5; }\n", ""]);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 325 */,
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactstrap = __webpack_require__(11);
+
+var _withLoader = __webpack_require__(18);
+
+var _withLoader2 = _interopRequireDefault(_withLoader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Sort = function (_React$Component) {
+  _inherits(Sort, _React$Component);
+
+  function Sort() {
+    _classCallCheck(this, Sort);
+
+    var _this = _possibleConstructorReturn(this, (Sort.__proto__ || Object.getPrototypeOf(Sort)).call(this));
+
+    _this.handleChange = _this.handleChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(Sort, [{
+    key: 'handleChange',
+    value: function handleChange(e) {
+      this.props.sortView(e.target.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactstrap.FormGroup,
+        { row: true, className: 'mb-0' },
+        _react2.default.createElement(
+          _reactstrap.Label,
+          { 'for': 'exampleEmail', sm: 2, className: 'd-none d-sm-block' },
+          'Sort'
+        ),
+        _react2.default.createElement(
+          _reactstrap.Col,
+          { sm: 10 },
+          _react2.default.createElement(
+            _reactstrap.Input,
+            { type: 'select', onChange: this.handleChange },
+            _react2.default.createElement(
+              'option',
+              { value: 'date_desc' },
+              'Date - Newest First'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'date_asc' },
+              'Date - Oldest First'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'date_update' },
+              'Date - Last Updated'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'alpha_asc' },
+              'Alphabetical - Asc'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'alpha_desc' },
+              'Alphabetical - Desc'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Sort;
+}(_react2.default.Component);
+
+;
+
+Sort.propTypes = {
+  isFetching: _propTypes2.default.bool,
+  hasError: _propTypes2.default.bool,
+  sortView: _propTypes2.default.func.isRequired
+};
+
+Sort.defaultProps = {
+  isFetching: false,
+  hasError: false
+};
+
+exports.default = (0, _withLoader2.default)(Sort);
 
 /***/ })
 /******/ ]);

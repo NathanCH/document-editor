@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Nav, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import Breadcrumb from 'components/Breadcrumb';
 
 const Container = props => (
