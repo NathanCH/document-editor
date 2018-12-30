@@ -17,9 +17,9 @@ class Documents extends React.Component {
 
   render() {
     const SelectedView = () => {
-      if (this.props.view == 'grid') {
+      if (this.props.view === 'grid') {
         return <Grid items={this.props.documents} isFetching={this.props.isFetching} />;
-      } else if (this.props.view == 'list') {
+      } else {
         return <List items={this.props.documents} isFetching={this.props.isFetching} />;
       }
     };

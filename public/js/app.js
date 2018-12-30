@@ -90712,9 +90712,9 @@ var Documents = function (_React$Component) {
       var _this2 = this;
 
       var SelectedView = function SelectedView() {
-        if (_this2.props.view == 'grid') {
+        if (_this2.props.view === 'grid') {
           return _react2.default.createElement(_Grid2.default, { items: _this2.props.documents, isFetching: _this2.props.isFetching });
-        } else if (_this2.props.view == 'list') {
+        } else {
           return _react2.default.createElement(_List2.default, { items: _this2.props.documents, isFetching: _this2.props.isFetching });
         }
       };
