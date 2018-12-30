@@ -1,0 +1,7 @@
+@import './resources/assets/sass/variables';
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Filter from './Filter';
 import Grid from './Grid';
 import Layout from './Layout';
+import List from './List';
 import Paginate from './Paginate';
 
 class Documents extends React.Component {
@@ -15,6 +16,14 @@ class Documents extends React.Component {
   }
 
   render() {
+    const SelectedView = () => {
+      if (this.props.view == 'grid') {
+        return <Grid items={this.props.documents} isFetching={this.props.isFetching} />;
+      } else if (this.props.view == 'list') {
+        return <List items={this.props.documents} isFetching={this.props.isFetching} />;
+      }
+    };
+
     return (
       <Layout.Container>
         <Layout.Section>
@@ -28,9 +37,7 @@ class Documents extends React.Component {
             isFetching={this.props.isFetching} />
         </Layout.Section>
         <Layout.Section>
-          <Grid 
-            items={this.props.documents} 
-            isFetching={this.props.isFetching} />
+          <SelectedView />
         </Layout.Section>
       </Layout.Container>
     );

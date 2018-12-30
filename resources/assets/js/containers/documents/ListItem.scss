@@ -1,31 +1,25 @@
 @import './resources/assets/sass/variables';
 
-.grid-item {}
+.list-item {}
 
-.grid-item-thumb {
+.list-item-thumb {
   position: relative;
   text-align: center;
 }
 
-.grid-item-thumb .fa-file-alt {
-  font-size: 7rem;
-  line-height: 16rem;
-  color: $gray-200;
-}
-
-.grid-item-thumb .fa-ellipsis-v {
+.list-item-thumb .fa-ellipsis-v {
   font-size: 1.5rem;
   line-height: 2rem;
   color: $primary;
 }
 
-.grid-item-dropdown {
+.list-item-dropdown {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.grid-item-toggle {
+.list-item-toggle {
   border-radius: 3rem !important;
   width: 3rem;
   height: 3rem;

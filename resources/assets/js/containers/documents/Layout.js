@@ -29,7 +29,7 @@ const Section = props => (
   </Row>
 );
 
-Row.propTypes = {
+Section.propTypes = {
   children: PropTypes.element.isRequired,
 };
 

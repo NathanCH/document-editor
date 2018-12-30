@@ -10,15 +10,14 @@ import {
   UncontrolledButtonDropdown,
 } from 'reactstrap';
 
-import './GridItem.scss';
+import './ListItem.scss';
 
-const GridItem = props => {
-  const GridItemThumb = () => (
-    <div className="grid-item-thumb">
-      <i className="fas fa-file-alt"></i>
-      <div className="grid-item-dropdown">
+const ListItem = props => {
+  const ListItemThumb = () => (
+    <div className="list-item-thumb">
+      <div className="list-item-dropdown">
         <UncontrolledButtonDropdown direction="down">
-          <DropdownToggle color="white" className="grid-item-toggle">
+          <DropdownToggle color="white" className="list-item-toggle">
             <i className="fas fa-ellipsis-v"></i>
           </DropdownToggle>
           <DropdownMenu right>
@@ -37,7 +36,7 @@ const GridItem = props => {
   const formattedDate = 
     moment(props.item.updated_at).format('MMM D, YYYY h:ma');
 
-  const GridItemText = () => (
+  const ListItemText = () => (
     <span>
       <i className="far fa-clock"></i> {formattedDate}
     </span>
@@ -45,15 +44,15 @@ const GridItem = props => {
 
   return (
     <Card
-      className="grid-item"
-      customSection={<GridItemThumb />}
-      title={props.item.title} 
-      text={<GridItemText />} />
+      className="list-item"
+      customSection={<ListItemThumb />}
+      title={props.item.title}
+      text={<ListItemText />} />
   );
 };
 
-GridItem.propTypes = {
+ListItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
-export default GridItem;
+export default ListItem;
