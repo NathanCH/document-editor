@@ -91824,7 +91824,7 @@ var Filter = function (_React$Component) {
   _createClass(Filter, [{
     key: 'handleClick',
     value: function handleClick(e) {
-      this.props.setView(e.target.getAttribute('filter-type'));
+      this.props.setView(e.target.value);
     }
   }, {
     key: 'render',
@@ -91834,13 +91834,13 @@ var Filter = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactstrap.Button,
-          { color: 'secondary', onClick: this.handleClick, 'filter-type': 'grid' },
+          { color: 'secondary', onClick: this.handleClick, value: 'grid' },
           _react2.default.createElement('i', { className: 'fas fa-fw fa-grip-horizontal' }),
           ' Grid'
         ),
         _react2.default.createElement(
           _reactstrap.Button,
-          { color: 'secondary', onClick: this.handleClick, 'filter-type': 'list' },
+          { color: 'secondary', onClick: this.handleClick, value: 'list' },
           _react2.default.createElement('i', { className: 'fas fa-fw fa-list' }),
           ' List'
         )

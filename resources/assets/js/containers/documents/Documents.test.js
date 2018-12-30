@@ -11,12 +11,13 @@ describe('<Documents />', () => {
     props = {
       ...bindActionCreators({
         request: (spies.request = jest.fn()),
+        setView: (spies.setView = jest.fn()),
       }, spies.dispatch = jest.fn()),
     };
     component = renderer.create(<Documents {...props} />);
   });
 
-  test('it calls request() on lifecycle componentWillMount()', () => {
+  test('it calls `props.request()` on lifecycle componentWillMount()', () => {
     expect(spies.request.mock.calls.length).toBe(1);
   });
 

@@ -31,7 +31,7 @@
           @guest
             <li class="nav-item">
               <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Sign In') }}</a>
-              <a class="btn btn-text text-underline ml-2" href="{{ route('register') }}">{{ __('create account') }}</a>
+              <a class="btn btn-link ml-2" href="{{ route('register') }}">{{ __('create account') }}</a>
             </li>
           @else
             <li class="nav-item dropdown">

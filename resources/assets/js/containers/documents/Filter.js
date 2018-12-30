@@ -12,16 +12,16 @@ class Filter extends React.Component {
   }
 
   handleClick(e) {
-    this.props.setView(e.target.getAttribute('filter-type'));
+    this.props.setView(e.target.value);
   }
 
   render() {
     return (
       <ButtonGroup>
-        <Button color="secondary" onClick={this.handleClick} filter-type="grid">
+        <Button color="secondary" onClick={this.handleClick} value="grid">
           <i className="fas fa-fw fa-grip-horizontal"></i> Grid
         </Button>
-        <Button color="secondary" onClick={this.handleClick} filter-type="list">
+        <Button color="secondary" onClick={this.handleClick} value="list">
           <i className="fas fa-fw fa-list"></i> List
         </Button>
       </ButtonGroup>
