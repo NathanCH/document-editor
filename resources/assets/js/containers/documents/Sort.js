@@ -19,7 +19,7 @@ class Sort extends React.Component {
       <FormGroup row className="mb-0">
         <Label for="exampleEmail" sm={2} className="d-none d-sm-block">Sort</Label>
         <Col sm={10}>
-          <Input type="select" onChange={this.handleChange}>
+          <Input type="select" name="sort-view" onChange={this.handleChange}>
             <option value="date_desc">Date - Newest First</option>
             <option value="date_asc">Date - Oldest First</option>
             <option value="date_update">Date - Last Updated</option>

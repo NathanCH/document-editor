@@ -92327,7 +92327,7 @@ var Sort = function (_React$Component) {
           { sm: 10 },
           _react2.default.createElement(
             _reactstrap.Input,
-            { type: 'select', onChange: this.handleChange },
+            { type: 'select', name: 'sort-view', onChange: this.handleChange },
             _react2.default.createElement(
               'option',
               { value: 'date_desc' },
