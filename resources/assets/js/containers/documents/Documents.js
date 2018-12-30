@@ -42,6 +42,7 @@ Documents.propTypes = {
   count: PropTypes.number,
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
+  view: PropTypes.string,
   request: PropTypes.func.isRequired,
   setView: PropTypes.func.isRequired,
 };
@@ -51,6 +52,7 @@ Documents.defaultProps = {
   count: 0,
   isFetching: false,
   hasError: false,
+  view: 'grid',
 };
 
 export default Documents;

@@ -12,7 +12,7 @@ class Filter extends React.Component {
   }
 
   handleClick(e) {
-    this.props.setView(e.target.value);
+    this.props.setView(e.currentTarget.value);
   }
 
   render() {

@@ -8,6 +8,7 @@ const mapStateToProps = ({ documents }) => ({
   count: documents.count,
   isFetching: documents.isFetching,
   hasError: documents.hasError,
+  view: documents.view,
 });
 
 const mapDispatchToProps = dispatch => (

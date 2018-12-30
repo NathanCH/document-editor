@@ -9,6 +9,7 @@ import {
   REQUEST_SUCCESS,
   REQUEST_FAILURE,
   request,
+  setView,
   default as reducer,
 } from './documents.js';
 
@@ -79,7 +80,7 @@ describe('Document - Action Creators', () => {
     fetch.resetMocks();
   });
 
-  it('creates `REQUEST_FETCH` and `REQUEST_SUCCESS` on request() success', () => {
+  it('creates `REQUEST_FETCH`, `REQUEST_SUCCESS` actions on request() success', () => {
     fetch.mockResponse(JSON.stringify({ data: mockDocuments }));
 
     const expectedActions = [
@@ -91,12 +92,10 @@ describe('Document - Action Creators', () => {
 
     return store
       .dispatch(request())
-      .then(() => {
-        expect(store.getActions()).toMatchObject(expectedActions);
-      });
+      .then(() => expect(store.getActions()).toMatchObject(expectedActions));
   });
 
-  it('creates `REQUEST_FETCH` and `REQUEST_FAILURE` on request() error', () => {
+  it('creates `REQUEST_FETCH`, `REQUEST_FAILURE` actions on request() error', () => {
     fetch.mockReject(new Error('Whoops!'));
 
     const expectedActions = [
@@ -108,9 +107,19 @@ describe('Document - Action Creators', () => {
 
     return store
       .dispatch(request())
-      .then(() => {
-        expect(store.getActions()).toMatchObject(expectedActions);
-      });
+      .then(() => expect(store.getActions()).toMatchObject(expectedActions));
+  });
+
+  it('creates `SET_VIEW` action on setView() event', () => {
+    const expectedActions = [
+      { type: 'SET_VIEW', payload: 'list' },
+    ];
+
+    const store = mockStore({});
+
+    store.dispatch(setView('list'));
+
+    expect(store.getActions()).toMatchObject(expectedActions);
   });
 
 });

@@ -29478,12 +29478,11 @@ function request() {
       method: 'GET',
       headers: new Headers({ 'Content-Type': 'application/json' })
     }).then(function (res) {
-      if (!res.ok) throw Error(res.statusText);
       return res.json();
     }).then(function (body) {
-      dispatch(requestSuccess(body.data));
+      return dispatch(requestSuccess(body.data));
     }).catch(function (err) {
-      dispatch(requestFailure(err));
+      return dispatch(requestFailure(err));
     });
   };
 }
@@ -90555,7 +90554,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
     documents: documents.documents,
     count: documents.count,
     isFetching: documents.isFetching,
-    hasError: documents.hasError
+    hasError: documents.hasError,
+    view: documents.view
   };
 };
 
@@ -90666,6 +90666,7 @@ Documents.propTypes = {
   count: _propTypes2.default.number,
   isFetching: _propTypes2.default.bool,
   hasError: _propTypes2.default.bool,
+  view: _propTypes2.default.string,
   request: _propTypes2.default.func.isRequired,
   setView: _propTypes2.default.func.isRequired
 };
@@ -90674,7 +90675,8 @@ Documents.defaultProps = {
   documents: [],
   count: 0,
   isFetching: false,
-  hasError: false
+  hasError: false,
+  view: 'grid'
 };
 
 exports.default = Documents;
@@ -91824,7 +91826,7 @@ var Filter = function (_React$Component) {
   _createClass(Filter, [{
     key: 'handleClick',
     value: function handleClick(e) {
-      this.props.setView(e.target.value);
+      this.props.setView(e.currentTarget.value);
     }
   }, {
     key: 'render',

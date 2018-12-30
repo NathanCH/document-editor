@@ -37,16 +37,9 @@ export function request() {
       method: 'GET',
       headers: new Headers({ 'Content-Type': 'application/json' }),
     })
-      .then(res => {
-        if (!res.ok) throw Error(res.statusText);
-        return res.json();
-      })
-      .then(body => {
-        dispatch(requestSuccess(body.data));
-      })
-      .catch(err => {
-        dispatch(requestFailure(err));
-      });
+      .then(res => res.json())
+      .then(body => dispatch(requestSuccess(body.data)))
+      .catch(err => dispatch(requestFailure(err)));
   };
 }
 

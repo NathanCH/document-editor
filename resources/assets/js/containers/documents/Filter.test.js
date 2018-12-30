@@ -27,7 +27,7 @@ describe('<Filter />', () => {
     );
 
     gridButton.props.onClick({
-      target: { value: 'grid' },
+      currentTarget: { value: 'grid' },
     });
 
     expect(spies.setView.mock.calls.length).toBe(1);
