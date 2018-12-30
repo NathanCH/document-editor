@@ -53,4 +53,17 @@ describe('<Grid />', () => {
     expect(foundClassNames).toHaveLength(2);
   });
 
+  test('it renders <Loader /> when `props.isFetching` is true', () => {
+    const component = renderer
+      .create(<Grid isFetching={true} />);
+
+    let instance = component.root;
+
+    const foundInstance = instance.findAll(
+      el => el.type.name == 'Loader'
+    );
+
+    expect(foundInstance).toHaveLength(1);
+  });
+
 });

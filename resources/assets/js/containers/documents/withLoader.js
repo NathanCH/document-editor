@@ -1,10 +1,11 @@
 import React from 'react';
+import Loader from 'components/Loader';
 
-const Loading = (WrappedComponent) => {
+const withLoader = (WrappedComponent) => {
   return class extends React.Component {
     render() {
       if (this.props.isFetching) {
-        return <span>Loading!</span>;
+        return <Loader />;
       }
 
       return <WrappedComponent {...this.props} />;
@@ -12,4 +13,4 @@ const Loading = (WrappedComponent) => {
   };
 };
 
-export default Loading;
+export default withLoader;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GridItem from './GridItem';
-import Loading from './Loading';
+import withLoader from './withLoader';
 
 import './Grid.scss';
 
@@ -25,4 +25,4 @@ Grid.defaultProps = {
   isFetching: false,
 };
 
-export default Loading(Grid);
+export default withLoader(Grid);

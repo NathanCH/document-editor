@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loading from './Loading';
+import withLoader from './withLoader';
 
 const Info = props => (
   <span>{props.count} results found.</span>
@@ -19,7 +19,7 @@ Info.defaultProps = {
 };
 
 const Paginate = {
-  Info: Loading(Info),
+  Info: withLoader(Info),
 };
 
 export default Paginate;

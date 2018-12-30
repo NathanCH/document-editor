@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from 'reactstrap';
-import Loading from './Loading';
+import withLoader from './withLoader';
 
 class Filter extends React.Component {
-
   constructor() {
     super();
 
@@ -40,4 +39,4 @@ Filter.defaultProps = {
   hasError: false,
 };
 
-export default Loading(Filter);
+export default withLoader(Filter);
