@@ -29535,7 +29535,6 @@ function request() {
   var sort = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
   var params = { sort: sort };
-
   var urlParams = new URLSearchParams(Object.entries(params));
 
   return function (dispatch) {

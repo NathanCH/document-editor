@@ -34,7 +34,6 @@ export function requestFailure() {
 
 export function request(sort = '') {
   const params = { sort: sort };
-
   const urlParams = new URLSearchParams(Object.entries(params));
 
   return dispatch => {
