@@ -13,29 +13,8 @@ class DocumentsController extends Controller
     {
         $sort = Input::get('sort');
 
-        switch ($sort) {
-          default:
-          case 'date_desc':
-              $documents = Document::orderBy('created_at', 'desc')->get();
-              break;
+        $documents = Document::orderByCustomString($sort);
 
-          case 'date_asc':
-              $documents = Document::orderBy('created_at', 'asc')->get();
-              break;
-
-          case 'date_update':
-              $documents = Document::orderBy('updated_at', 'desc')->get();
-              break;
-
-          case 'alpha_asc':
-              $documents = Document::orderBy('title', 'asc')->get();
-              break;
-
-          case 'alpha_desc':
-              $documents = Document::orderBy('title', 'desc')->get();
-              break;
-        }
-   
         return new DocumentCollection($documents);
     }
 

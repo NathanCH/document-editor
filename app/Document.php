@@ -53,8 +53,39 @@ class Document extends Model
      * @param string $value
      * @return string
      */
-     public function getTitleAttribute($value)
-     {
-         return !empty($value) ? $value : 'Untitled Draft';
-     }
+    public function getTitleAttribute($value)
+    {
+        return !empty($value) ? $value : 'Untitled Draft';
+    }
+
+    /**
+     * Return default string if document is untitled.
+     *
+     * @param string $order
+     */
+    public static function orderByCustomString($order = '')
+    {
+        switch ($order) {
+            case 'alpha_asc':
+                return self::orderBy('title', 'asc')->get();
+                break;
+
+            case 'alpha_desc':
+                return self::orderBy('title', 'desc')->get();
+                break;
+
+            case 'date_asc':
+                return self::orderBy('created_at', 'asc')->get();
+                break;
+
+            case 'date_desc':
+                return self::orderBy('created_at', 'desc')->get();
+                break;
+
+            default:
+            case 'date_update':
+                return self::orderBy('updated_at', 'desc')->get();
+                break;
+        }
+    }
 }
