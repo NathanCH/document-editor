@@ -133,21 +133,23 @@ describe('Document - Action Creators', () => {
     expect(store.getActions()).toMatchObject(expectedActions);
   });
 
-  it('creates `SORT_VIEW`, `REQUEST_FETCH`, `REQUEST_SUCCESS` actions on sortView() event', () => {
+  it('creates `SORT_VIEW`, `REQUEST_FETCH` actions on sortView() event', () => {
     fetch.mockResponse();
 
+    const newSort = 'date_asc';
+
     const expectedActions = [
-      { type: 'SORT_VIEW', payload: 'date_asc' },
+      { type: 'SORT_VIEW', payload: newSort },
       { type: 'REQUEST_FETCH' },
     ];
 
     const store = mockStore({});
 
-    store.dispatch(sortView('date_asc', ''));
+    store.dispatch(sortView(newSort, 'foo'));
 
     expect(store.getActions()).toMatchObject(expectedActions);
 
-    store.dispatch(sortView('date_asc', 'date_asc'));
+    store.dispatch(sortView(newSort, newSort));
 
     expect(store.getActions()).toMatchObject(expectedActions);
   });

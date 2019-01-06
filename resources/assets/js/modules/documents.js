@@ -32,10 +32,14 @@ export function requestFailure() {
   };
 }
 
-export function request() {
+export function request(sort = '') {
+  const params = { sort: sort };
+
+  const urlParams = new URLSearchParams(Object.entries(params));
+
   return dispatch => {
     dispatch(requestFetch());
-    return fetch('/api/documents', {
+    return fetch('/api/documents?' + urlParams, {
       method: 'GET',
       headers: new Headers({ 'Content-Type': 'application/json' }),
     })
@@ -56,7 +60,7 @@ export function sortView(sortString, oldSortString) {
   return dispatch => {
     if (sortString !== oldSortString) {
       dispatch(setSort(sortString));
-      dispatch(request());
+      dispatch(request(sortString));
     }
   };
 }

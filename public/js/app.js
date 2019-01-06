@@ -29532,9 +29532,15 @@ function requestFailure() {
 }
 
 function request() {
+  var sort = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+  var params = { sort: sort };
+
+  var urlParams = new URLSearchParams(Object.entries(params));
+
   return function (dispatch) {
     dispatch(requestFetch());
-    return fetch('/api/documents', {
+    return fetch('/api/documents?' + urlParams, {
       method: 'GET',
       headers: new Headers({ 'Content-Type': 'application/json' })
     }).then(function (res) {
@@ -29558,7 +29564,7 @@ function sortView(sortString, oldSortString) {
   return function (dispatch) {
     if (sortString !== oldSortString) {
       dispatch(setSort(sortString));
-      dispatch(request());
+      dispatch(request(sortString));
     }
   };
 }
