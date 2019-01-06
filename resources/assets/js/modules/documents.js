@@ -52,7 +52,16 @@ export function filterView(viewString) {
   };
 }
 
-export function sortView(sortString) {
+export function sortView(sortString, oldSortString) {
+  return dispatch => {
+    if (sortString !== oldSortString) {
+      dispatch(setSort(sortString));
+      dispatch(request());
+    }
+  };
+}
+
+export function setSort(sortString) {
   return {
     type: SORT_VIEW,
     payload: sortString,

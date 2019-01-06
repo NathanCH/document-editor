@@ -9,6 +9,7 @@ const mapStateToProps = ({ documents }) => ({
   isFetching: documents.isFetching,
   hasError: documents.hasError,
   view: documents.view,
+  sort: documents.sort,
 });
 
 const mapDispatchToProps = dispatch => (

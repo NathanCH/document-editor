@@ -10,14 +10,14 @@ describe('<Filter />', () => {
     spies = {};
     props = {
       ...bindActionCreators({
-        filterView: (spies.filterView = jest.fn()),
+        onFilter: (spies.onFilter = jest.fn()),
       }, spies.dispatch = jest.fn()),
     };
     component = renderer.create(<Filter {...props} />);
   });
 
-  test('it calls `props.filterView()` when <Button /> is clicked', () => {
-    expect(spies.filterView.mock.calls.length).toBe(0);
+  test('it calls `props.onFilter()` when <Button /> is clicked', () => {
+    expect(spies.onFilter.mock.calls.length).toBe(0);
 
     let instance = component.root;
 
@@ -30,7 +30,7 @@ describe('<Filter />', () => {
       currentTarget: { value: 'grid' },
     });
 
-    expect(spies.filterView.mock.calls.length).toBe(1);
+    expect(spies.onFilter.mock.calls.length).toBe(1);
   });
 
 });

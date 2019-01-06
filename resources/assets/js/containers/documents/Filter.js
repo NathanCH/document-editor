@@ -11,7 +11,7 @@ class Filter extends React.Component {
   }
 
   handleClick(e) {
-    this.props.filterView(e.currentTarget.value);
+    this.props.onFilter(e.currentTarget.value);
   }
 
   render() {
@@ -31,7 +31,7 @@ class Filter extends React.Component {
 Filter.propTypes = {
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
-  filterView: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
 };
 
 Filter.defaultProps = {

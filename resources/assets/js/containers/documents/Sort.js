@@ -11,7 +11,7 @@ class Sort extends React.Component {
   }
 
   handleChange(e) {
-    this.props.sortView(e.target.value);
+    this.props.onSort(e.target.value, this.props.current);
   }
 
   render() {
@@ -19,7 +19,11 @@ class Sort extends React.Component {
       <FormGroup row className="mb-0">
         <Label for="exampleEmail" sm={2} className="d-none d-sm-block">Sort</Label>
         <Col sm={10}>
-          <Input type="select" name="sort-view" onChange={this.handleChange}>
+          <Input
+            type="select"
+            name="sort-view"
+            onChange={this.handleChange}
+            defaultValue={this.props.current}>
             <option value="date_desc">Date - Newest First</option>
             <option value="date_asc">Date - Oldest First</option>
             <option value="date_update">Date - Last Updated</option>
@@ -35,10 +39,12 @@ class Sort extends React.Component {
 Sort.propTypes = {
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
-  sortView: PropTypes.func.isRequired,
+  current: PropTypes.string,
+  onSort: PropTypes.func.isRequired,
 };
 
 Sort.defaultProps = {
+  current: 'date_desc',
   isFetching: false,
   hasError: false,
 };

@@ -9,10 +9,6 @@ import Paginate from './Paginate';
 import Sort from './Sort';
 
 class Documents extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentWillMount() {
     this.props.request();
   }
@@ -20,9 +16,17 @@ class Documents extends React.Component {
   render() {
     const SelectedView = () => {
       if (this.props.view === 'grid') {
-        return <Grid items={this.props.documents} isFetching={this.props.isFetching} />;
+        return (
+          <Grid 
+            items={this.props.documents} 
+            isFetching={this.props.isFetching} />
+        );
       } else {
-        return <List items={this.props.documents} isFetching={this.props.isFetching} />;
+        return (
+          <List 
+            items={this.props.documents}
+            isFetching={this.props.isFetching} />
+        );
       }
     };
 
@@ -37,12 +41,13 @@ class Documents extends React.Component {
           <Row>
             <Col xs="6" lg="8">
               <Filter
-                filterView={this.props.filterView}
+                onFilter={this.props.filterView}
                 isFetching={this.props.isFetching} />
             </Col>
             <Col xs="6" lg="4">
               <Sort
-                sortView={this.props.sortView}
+                current={this.props.sort}
+                onSort={this.props.sortView}
                 isFetching={this.props.isFetching} />
             </Col>
           </Row>
@@ -61,6 +66,7 @@ Documents.propTypes = {
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
   view: PropTypes.string,
+  sort: PropTypes.string,
   request: PropTypes.func.isRequired,
   filterView: PropTypes.func.isRequired,
   sortView: PropTypes.func.isRequired,
@@ -72,6 +78,7 @@ Documents.defaultProps = {
   isFetching: false,
   hasError: false,
   view: 'grid',
+  sort: 'date_desc',
 };
 
 export default Documents;

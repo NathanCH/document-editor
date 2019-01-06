@@ -11,6 +11,7 @@ import {
   request,
   filterView,
   sortView,
+  setSort,
   default as reducer,
 } from './documents.js';
 
@@ -132,14 +133,33 @@ describe('Document - Action Creators', () => {
     expect(store.getActions()).toMatchObject(expectedActions);
   });
 
-  it('creates `SORT_VIEW` action on sortView() event', () => {
+  it('creates `SORT_VIEW`, `REQUEST_FETCH`, `REQUEST_SUCCESS` actions on sortView() event', () => {
+    fetch.mockResponse();
+
+    const expectedActions = [
+      { type: 'SORT_VIEW', payload: 'date_asc' },
+      { type: 'REQUEST_FETCH' },
+    ];
+
+    const store = mockStore({});
+
+    store.dispatch(sortView('date_asc', ''));
+
+    expect(store.getActions()).toMatchObject(expectedActions);
+
+    store.dispatch(sortView('date_asc', 'date_asc'));
+
+    expect(store.getActions()).toMatchObject(expectedActions);
+  });
+
+  it('creates `SORT_VIEW` action on setSort() event', () => {
     const expectedActions = [
       { type: 'SORT_VIEW', payload: 'date_asc' },
     ];
 
     const store = mockStore({});
 
-    store.dispatch(sortView('date_asc'));
+    store.dispatch(setSort('date_asc'));
 
     expect(store.getActions()).toMatchObject(expectedActions);
   });

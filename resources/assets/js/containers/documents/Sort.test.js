@@ -9,15 +9,22 @@ describe('<Sort />', () => {
   beforeEach(() => {
     spies = {};
     props = {
+      current: 'date_update',
       ...bindActionCreators({
-        sortView: (spies.sortView = jest.fn()),
+        onSort: (spies.onSort = jest.fn()),
       }, spies.dispatch = jest.fn()),
     };
     component = renderer.create(<Sort {...props} />);
   });
 
+  test('it sets a defaultValue based on `props.current` value', () => {
+    let instance = component.root;
+
+    expect(instance.props.current).toEqual(props.current);
+  })
+
   test('it calls `props.sortView()` when <Select /> is changed', () => {
-    expect(spies.sortView.mock.calls.length).toBe(0);
+    expect(spies.onSort.mock.calls.length).toBe(0);
 
     let instance = component.root;
 
@@ -30,7 +37,7 @@ describe('<Sort />', () => {
       target: { value: 'date_asc' },
     });
 
-    expect(spies.sortView.mock.calls.length).toBe(1);
+    expect(spies.onSort.mock.calls.length).toBe(1);
   });
 
 });
