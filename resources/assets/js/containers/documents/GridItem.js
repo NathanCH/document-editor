@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Card from 'components/Card';
 
@@ -13,6 +14,23 @@ import {
 import './GridItem.scss';
 
 const GridItem = props => {
+  const formattedDate = 
+    moment(props.item.updated_at).format('MMM D, YY h:ma');
+
+  const documentPath = '/document/' + props.item.id;
+
+  const GridItemText = () => (
+    <span>
+      <i className="far fa-clock"></i> {formattedDate}
+    </span>
+  );
+
+  const GridItemTitle = () => (
+    <Link to={documentPath} className="grid-item-title">
+      {props.item.title}
+    </Link>
+  );
+
   const GridItemThumb = () => (
     <div className="grid-item-thumb">
       <i className="fas fa-file-alt"></i>
@@ -34,21 +52,12 @@ const GridItem = props => {
     </div>
   );
 
-  const formattedDate = 
-    moment(props.item.updated_at).format('MMM D, YYYY h:ma');
-
-  const GridItemText = () => (
-    <span>
-      <i className="far fa-clock"></i> {formattedDate}
-    </span>
-  );
-
   return (
     <Card
       className="grid-item"
-      customSection={<GridItemThumb />}
-      title={props.item.title} 
-      text={<GridItemText />} />
+      title={<GridItemTitle />} 
+      text={<GridItemText />}
+      customSection={<GridItemThumb />} />
   );
 };
 

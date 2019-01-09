@@ -91180,6 +91180,8 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _reactRouterDom = __webpack_require__(269);
+
 var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
@@ -91195,6 +91197,28 @@ __webpack_require__(306);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var GridItem = function GridItem(props) {
+  var formattedDate = (0, _moment2.default)(props.item.updated_at).format('MMM D, YY h:ma');
+
+  var documentPath = '/document/' + props.item.id;
+
+  var GridItemText = function GridItemText() {
+    return _react2.default.createElement(
+      'span',
+      null,
+      _react2.default.createElement('i', { className: 'far fa-clock' }),
+      ' ',
+      formattedDate
+    );
+  };
+
+  var GridItemTitle = function GridItemTitle() {
+    return _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: documentPath, className: 'grid-item-title' },
+      props.item.title
+    );
+  };
+
   var GridItemThumb = function GridItemThumb() {
     return _react2.default.createElement(
       'div',
@@ -91232,23 +91256,11 @@ var GridItem = function GridItem(props) {
     );
   };
 
-  var formattedDate = (0, _moment2.default)(props.item.updated_at).format('MMM D, YYYY h:ma');
-
-  var GridItemText = function GridItemText() {
-    return _react2.default.createElement(
-      'span',
-      null,
-      _react2.default.createElement('i', { className: 'far fa-clock' }),
-      ' ',
-      formattedDate
-    );
-  };
-
   return _react2.default.createElement(_Card2.default, {
     className: 'grid-item',
-    customSection: _react2.default.createElement(GridItemThumb, null),
-    title: props.item.title,
-    text: _react2.default.createElement(GridItemText, null) });
+    title: _react2.default.createElement(GridItemTitle, null),
+    text: _react2.default.createElement(GridItemText, null),
+    customSection: _react2.default.createElement(GridItemThumb, null) });
 };
 
 GridItem.propTypes = {
@@ -91675,7 +91687,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, ".grid-item-thumb {\n  position: relative;\n  text-align: center; }\n\n.grid-item-thumb .fa-file-alt {\n  font-size: 7rem;\n  line-height: 16rem;\n  color: #e9ecef; }\n\n.grid-item-thumb .fa-ellipsis-v {\n  font-size: 1.25rem;\n  line-height: 1.75rem;\n  color: #f66051; }\n\n.grid-item-dropdown {\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.grid-item-toggle {\n  border-radius: 2.5rem !important;\n  width: 2.5rem;\n  height: 2.5rem; }\n  .grid-item-toggle:hover {\n    background: #f8f9fa; }\n  .grid-item-toggle:active, .grid-item-toggle:focus {\n    background: #f66051; }\n  .grid-item-toggle:active i,\n  .grid-item-toggle:focus i {\n    color: #fff; }\n", ""]);
+exports.push([module.i, ".grid-item-thumb {\n  position: relative;\n  text-align: center; }\n\n.grid-item-thumb .fa-file-alt {\n  font-size: 7rem;\n  line-height: 16rem;\n  color: #e9ecef; }\n\n.grid-item-thumb .fa-ellipsis-v {\n  font-size: 1.25rem;\n  line-height: 1.75rem;\n  color: #f66051; }\n\n.grid-item-dropdown {\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.grid-item-toggle {\n  border-radius: 2.5rem !important;\n  width: 2.5rem;\n  height: 2.5rem; }\n  .grid-item-toggle:hover {\n    background: #f8f9fa; }\n  .grid-item-toggle:active, .grid-item-toggle:focus {\n    background: #f66051; }\n  .grid-item-toggle:active i,\n  .grid-item-toggle:focus i {\n    color: #fff; }\n\n.grid-item-title {\n  color: inherit; }\n  .grid-item-title:hover {\n    text-decoration: none; }\n", ""]);
 
 // exports
 

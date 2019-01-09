@@ -41,3 +41,10 @@
     color: $white;
   }
 }
+
+.grid-item-title {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
