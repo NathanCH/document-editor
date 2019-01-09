@@ -8,8 +8,8 @@
 }
 
 .list-item-thumb .fa-ellipsis-v {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: $primary;
 }
 
@@ -20,9 +20,9 @@
 }
 
 .list-item-toggle {
-  border-radius: 3rem !important;
-  width: 3rem;
-  height: 3rem;
+  border-radius: 2.5rem !important;
+  width: 2.5rem;
+  height: 2.5rem;
   &:hover {
     background: $gray-100;
   }

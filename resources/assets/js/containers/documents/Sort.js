@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
-import withLoader from './withLoader';
 
 class Sort extends React.Component {
   constructor() {
@@ -37,7 +36,6 @@ class Sort extends React.Component {
 };
 
 Sort.propTypes = {
-  isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
   current: PropTypes.string,
   onSort: PropTypes.func.isRequired,
@@ -45,8 +43,7 @@ Sort.propTypes = {
 
 Sort.defaultProps = {
   current: 'date_desc',
-  isFetching: false,
   hasError: false,
 };
 
-export default withLoader(Sort);
+export default Sort;

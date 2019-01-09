@@ -15,7 +15,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-sm navbar-grey">
       <div class="container">
-        <span class="text-muted"><?= date('l, F n') ?></span>
+        <span class="text-muted"><?= date('l, F d') ?></span>
         <a href="#" class="text-muted">View Source</a>
       </div>
     </nav>

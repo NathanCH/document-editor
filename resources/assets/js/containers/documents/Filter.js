@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from 'reactstrap';
-import withLoader from './withLoader';
 
 class Filter extends React.Component {
   constructor() {
@@ -17,10 +16,18 @@ class Filter extends React.Component {
   render() {
     return (
       <ButtonGroup className="text-nowrap">
-        <Button color="secondary" onClick={this.handleClick} value="grid">
+        <Button
+          color="secondary"
+          onClick={this.handleClick}
+          value="grid"
+          disabled={this.props.isFetching}>
           <i className="fas fa-fw fa-grip-horizontal"></i> Grid
         </Button>
-        <Button color="secondary" onClick={this.handleClick} value="list">
+        <Button
+          color="secondary"
+          onClick={this.handleClick}
+          value="list"
+          disabled={this.props.isFetching}>
           <i className="fas fa-fw fa-list"></i> List
         </Button>
       </ButtonGroup>
@@ -30,13 +37,11 @@ class Filter extends React.Component {
 
 Filter.propTypes = {
   isFetching: PropTypes.bool,
-  hasError: PropTypes.bool,
   onFilter: PropTypes.func.isRequired,
 };
 
 Filter.defaultProps = {
   isFetching: false,
-  hasError: false,
 };
 
-export default withLoader(Filter);
+export default Filter;

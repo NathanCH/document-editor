@@ -14,28 +14,10 @@ class Documents extends React.Component {
   }
 
   render() {
-    const SelectedView = () => {
-      if (this.props.view === 'grid') {
-        return (
-          <Grid 
-            items={this.props.documents} 
-            isFetching={this.props.isFetching} />
-        );
-      } else {
-        return (
-          <List 
-            items={this.props.documents}
-            isFetching={this.props.isFetching} />
-        );
-      }
-    };
-
     return (
       <Layout.Container>
         <Layout.Section>
-          <Paginate.Info
-            count={this.props.count}
-            isFetching={this.props.isFetching} />
+          <Paginate.Info count={this.props.count}/>
         </Layout.Section>
         <Layout.Section>
           <Row>
@@ -47,13 +29,20 @@ class Documents extends React.Component {
             <Col xs="6" lg="4">
               <Sort
                 current={this.props.sort}
-                onSort={this.props.sortView}
-                isFetching={this.props.isFetching} />
+                onSort={this.props.sortView} />
             </Col>
           </Row>
         </Layout.Section>
         <Layout.Section>
-          <SelectedView />
+          { this.props.view === 'grid' ? (
+            <Grid 
+              items={this.props.documents} 
+              isFetching={this.props.isFetching} />
+          ) : (
+            <List 
+              items={this.props.documents}
+              isFetching={this.props.isFetching} />
+          )}
         </Layout.Section>
       </Layout.Container>
     );
