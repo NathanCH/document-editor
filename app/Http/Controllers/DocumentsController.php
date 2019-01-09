@@ -11,9 +11,9 @@ class DocumentsController extends Controller
 {    
     public function index()
     {
-        $sort = Input::get('sort');
+        $sort_string = Input::get('sort');
 
-        $documents = Document::orderByCustomString($sort);
+        $documents = Document::orderByCustomString($sort_string);
 
         return new DocumentCollection($documents);
     }

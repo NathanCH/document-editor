@@ -41,4 +41,16 @@ class DocumentTest extends TestCase
         
         $this->assertEquals('Untitled Draft', $document->title);
     }
+
+    /**
+     * Test custom set of strings returns desired order.
+     *
+     * @return void
+     */
+    public function testOrderByCustomString()
+    {    
+        $documents = Document::orderByCustomString('alpha_asc');
+
+        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Collection::class, $documents);
+    }
 }
