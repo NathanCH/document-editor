@@ -40,10 +40,7 @@ const GridItem = props => {
             <i className="fas fa-ellipsis-v"></i>
           </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem>
-              <i className="fas fa-fw fa-share"></i> Share
-            </DropdownItem>
-            <DropdownItem>
+            <DropdownItem tag={Link} to={documentPath + '/delete'}>
               <i className="fas fa-fw fa-trash"></i> Remove
             </DropdownItem>
           </DropdownMenu>
