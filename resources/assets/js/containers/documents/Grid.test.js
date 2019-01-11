@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
 import Grid from './Grid';
 
 const mockItems = [
@@ -20,7 +21,11 @@ const mockItems = [
 describe('<Grid />', () => {
   test('it renders without props', () => {
     const component = renderer
-      .create(<Grid />)
+      .create(
+        <MemoryRouter>
+          <Grid />
+        </MemoryRouter>
+      )
       .toJSON();
 
     expect(component).toMatchSnapshot();
@@ -28,7 +33,11 @@ describe('<Grid />', () => {
 
   test('it renders a <GridItem /> for each `props.items`', () => {
     const component = renderer
-      .create(<Grid items={mockItems} />);
+      .create(
+        <MemoryRouter>
+          <Grid items={mockItems} />
+        </MemoryRouter>
+      );
 
     let instance = component.root;
 
@@ -41,7 +50,11 @@ describe('<Grid />', () => {
 
   test('it renders className `.grid-item` for each `props.items`', () => {
     const component = renderer
-      .create(<Grid items={mockItems} />);
+      .create(
+        <MemoryRouter>
+          <Grid items={mockItems} />
+        </MemoryRouter>
+      );
 
     let instance = component.root;
 
@@ -55,7 +68,11 @@ describe('<Grid />', () => {
 
   test('it renders <Loader /> when `props.isFetching` is true', () => {
     const component = renderer
-      .create(<Grid isFetching={true} />);
+      .create(
+        <MemoryRouter>
+          <Grid isFetching={true} />
+        </MemoryRouter>
+      );
 
     let instance = component.root;
 

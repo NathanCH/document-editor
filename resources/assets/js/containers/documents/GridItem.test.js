@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
 import GridItem from './GridItem';
 
 const mockItem = {
@@ -12,7 +13,11 @@ const mockItem = {
 describe('<GridItem />', () => {
   test('it renders a <Card /> as `props.item`', () => {
     const component = renderer
-      .create(<GridItem item={mockItem} />);
+      .create(
+        <MemoryRouter>
+          <GridItem item={mockItem} />
+        </MemoryRouter>
+      );
 
     let instance = component.root;
 
@@ -25,7 +30,11 @@ describe('<GridItem />', () => {
 
   test('it renders dropdown when `.grid-item-toggle` is clicked', () => {
     const component = renderer
-      .create(<GridItem item={mockItem} />);
+      .create(
+        <MemoryRouter>
+          <GridItem item={mockItem} />
+        </MemoryRouter>
+      );
 
     const gridItemToggle = el =>
       el.props.tag == 'button' && el.props.className == 'grid-item-toggle';
