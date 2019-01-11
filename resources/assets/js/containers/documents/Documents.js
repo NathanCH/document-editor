@@ -23,7 +23,7 @@ class Documents extends React.Component {
           <Row>
             <Col xs="6" lg="8">
               <Filter
-                onFilter={this.props.filterView}
+                onFilter={this.props.setFilter}
                 isFetching={this.props.isFetching} />
             </Col>
             <Col xs="6" lg="4">
@@ -57,7 +57,7 @@ Documents.propTypes = {
   view: PropTypes.string,
   sort: PropTypes.string,
   request: PropTypes.func.isRequired,
-  filterView: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
   sortView: PropTypes.func.isRequired,
 };
 

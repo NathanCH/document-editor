@@ -1,8 +1,8 @@
 export const REQUEST_FETCH = 'REQUEST_FETCH';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILURE = 'REQUEST_FAILURE';
-export const FILTER_VIEW = 'FILTER_VIEW';
-export const SORT_VIEW = 'SORT_VIEW';
+export const SET_FILTER = 'SET_FILTER';
+export const SET_SORT = 'SET_SORT';
 
 const initialState = {
   documents: [],
@@ -48,9 +48,9 @@ export function request(sort = '') {
   };
 }
 
-export function filterView(viewString) {
+export function setFilter(viewString) {
   return {
-    type: FILTER_VIEW,
+    type: SET_FILTER,
     payload: viewString,
   };
 }
@@ -66,10 +66,14 @@ export function sortView(sortString, oldSortString) {
 
 export function setSort(sortString) {
   return {
-    type: SORT_VIEW,
+    type: SET_SORT,
     payload: sortString,
   };
 }
+
+// export function requestReducer(state = initialState, action) => {};
+
+// export function viewReducer(state = initialState, action) => {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -97,13 +101,13 @@ export default (state = initialState, action) => {
         hasError: true,
       }
 
-    case FILTER_VIEW:
+    case SET_FILTER:
       return {
         ...state,
         view: action.payload,
       }
 
-    case SORT_VIEW:
+    case SET_SORT:
       return {
         ...state,
         sort: action.payload,

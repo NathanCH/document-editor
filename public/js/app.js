@@ -29438,14 +29438,14 @@ exports.requestFetch = requestFetch;
 exports.requestSuccess = requestSuccess;
 exports.requestFailure = requestFailure;
 exports.request = request;
-exports.filterView = filterView;
+exports.setFilter = setFilter;
 exports.sortView = sortView;
 exports.setSort = setSort;
 var REQUEST_FETCH = exports.REQUEST_FETCH = 'REQUEST_FETCH';
 var REQUEST_SUCCESS = exports.REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 var REQUEST_FAILURE = exports.REQUEST_FAILURE = 'REQUEST_FAILURE';
-var FILTER_VIEW = exports.FILTER_VIEW = 'FILTER_VIEW';
-var SORT_VIEW = exports.SORT_VIEW = 'SORT_VIEW';
+var SET_FILTER = exports.SET_FILTER = 'SET_FILTER';
+var SET_SORT = exports.SET_SORT = 'SET_SORT';
 
 var initialState = {
   documents: [],
@@ -29496,9 +29496,9 @@ function request() {
   };
 }
 
-function filterView(viewString) {
+function setFilter(viewString) {
   return {
-    type: FILTER_VIEW,
+    type: SET_FILTER,
     payload: viewString
   };
 }
@@ -29514,10 +29514,14 @@ function sortView(sortString, oldSortString) {
 
 function setSort(sortString) {
   return {
-    type: SORT_VIEW,
+    type: SET_SORT,
     payload: sortString
   };
 }
+
+// export function requestReducer(state = initialState, action) => {};
+
+// export function viewReducer(state = initialState, action) => {};
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -29545,12 +29549,12 @@ exports.default = function () {
         hasError: true
       });
 
-    case FILTER_VIEW:
+    case SET_FILTER:
       return _extends({}, state, {
         view: action.payload
       });
 
-    case SORT_VIEW:
+    case SET_SORT:
       return _extends({}, state, {
         sort: action.payload
       });
@@ -90668,7 +90672,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({
     request: _documents.request,
-    filterView: _documents.filterView,
+    setFilter: _documents.setFilter,
     sortView: _documents.sortView
   }, dispatch);
 };
@@ -90765,7 +90769,7 @@ var Documents = function (_React$Component) {
               _reactstrap.Col,
               { xs: '6', lg: '8' },
               _react2.default.createElement(_Filter2.default, {
-                onFilter: this.props.filterView,
+                onFilter: this.props.setFilter,
                 isFetching: this.props.isFetching })
             ),
             _react2.default.createElement(
@@ -90801,7 +90805,7 @@ Documents.propTypes = {
   view: _propTypes2.default.string,
   sort: _propTypes2.default.string,
   request: _propTypes2.default.func.isRequired,
-  filterView: _propTypes2.default.func.isRequired,
+  setFilter: _propTypes2.default.func.isRequired,
   sortView: _propTypes2.default.func.isRequired
 };
 

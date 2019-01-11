@@ -9,7 +9,7 @@ import {
   REQUEST_SUCCESS,
   REQUEST_FAILURE,
   request,
-  filterView,
+  setFilter,
   sortView,
   setSort,
   default as reducer,
@@ -66,18 +66,18 @@ describe('Document - Reducer', () => {
     });
   });
 
-  test('it should handle `FILTER_VIEW` action', () => {
+  test('it should handle `SET_FILTER` action', () => {
     expect(reducer(undefined, {
-      type: 'FILTER_VIEW',
+      type: 'SET_FILTER',
       payload: 'list',
     })).toMatchObject({
       view: 'list',
     });
   });
 
-  test('it should handle `SORT_VIEW` action', () => {
+  test('it should handle `SET_SORT` action', () => {
     expect(reducer(undefined, {
-      type: 'SORT_VIEW',
+      type: 'SET_SORT',
       payload: 'date_asc',
     })).toMatchObject({
       sort: 'date_asc',
@@ -121,25 +121,25 @@ describe('Document - Action Creators', () => {
       .then(() => expect(store.getActions()).toMatchObject(expectedActions));
   });
 
-  it('creates `FILTER_VIEW` action on filterView() event', () => {
+  it('creates `SET_FILTER` action on setFilter() event', () => {
     const expectedActions = [
-      { type: 'FILTER_VIEW', payload: 'list' },
+      { type: 'SET_FILTER', payload: 'list' },
     ];
 
     const store = mockStore({});
 
-    store.dispatch(filterView('list'));
+    store.dispatch(setFilter('list'));
 
     expect(store.getActions()).toMatchObject(expectedActions);
   });
 
-  it('creates `SORT_VIEW`, `REQUEST_FETCH` actions on sortView() event', () => {
+  it('creates `SET_SORT`, `REQUEST_FETCH` actions on sortView() event', () => {
     fetch.mockResponse();
 
     const newSort = 'date_asc';
 
     const expectedActions = [
-      { type: 'SORT_VIEW', payload: newSort },
+      { type: 'SET_SORT', payload: newSort },
       { type: 'REQUEST_FETCH' },
     ];
 
@@ -154,9 +154,9 @@ describe('Document - Action Creators', () => {
     expect(store.getActions()).toMatchObject(expectedActions);
   });
 
-  it('creates `SORT_VIEW` action on setSort() event', () => {
+  it('creates `SET_SORT` action on setSort() event', () => {
     const expectedActions = [
-      { type: 'SORT_VIEW', payload: 'date_asc' },
+      { type: 'SET_SORT', payload: 'date_asc' },
     ];
 
     const store = mockStore({});
