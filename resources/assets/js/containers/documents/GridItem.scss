@@ -2,8 +2,11 @@
 
 .grid-item {}
 
-.grid-item-thumb {
+.grid-item-custom-section {
   position: relative;
+}
+
+.grid-item-thumb {
   text-align: center;
 }
 
@@ -13,16 +16,16 @@
   color: $gray-200;
 }
 
-.grid-item-thumb .fa-ellipsis-v {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: $primary;
-}
-
 .grid-item-dropdown {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.grid-item-dropdown .fa-ellipsis-v {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: $primary;
 }
 
 .grid-item-toggle {

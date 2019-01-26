@@ -22,9 +22,6 @@ const ListItem = props => {
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem>
-              <i className="fas fa-fw fa-share"></i> Share
-            </DropdownItem>
-            <DropdownItem>
               <i className="fas fa-fw fa-trash"></i> Remove
             </DropdownItem>
           </DropdownMenu>

@@ -22,7 +22,10 @@ const CardWrapper = props => (
 
 CardWrapper.propTypes = {
   className: PropTypes.string,
-  customSection: PropTypes.element,
+  customSection: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]),
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,

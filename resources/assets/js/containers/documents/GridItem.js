@@ -31,9 +31,11 @@ const GridItem = props => {
     </Link>
   );
 
-  const GridItemThumb = () => (
-    <div className="grid-item-thumb">
-      <i className="fas fa-file-alt"></i>
+  const CustomSection = (props) => (
+    <div className="grid-item-custom-section">
+      <div className="grid-item-thumb">
+        <i className="fas fa-file-alt"></i>
+      </div>
       <div className="grid-item-dropdown">
         <UncontrolledButtonDropdown direction="down">
           <DropdownToggle color="white" className="grid-item-toggle">
@@ -54,7 +56,7 @@ const GridItem = props => {
       className="grid-item"
       title={<GridItemTitle />} 
       text={<GridItemText />}
-      customSection={<GridItemThumb />} />
+      customSection={<CustomSection />} />
   );
 };
 
