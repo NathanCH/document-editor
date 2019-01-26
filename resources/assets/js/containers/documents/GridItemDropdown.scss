@@ -1,0 +1,30 @@
+@import './resources/assets/sass/variables';
+
+.grid-item-dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.grid-item-dropdown .fa-ellipsis-v {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: $primary;
+}
+
+.grid-item-toggle {
+  border-radius: 2.5rem !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  &:hover {
+    background: $gray-100;
+  }
+  &:active,
+  &:focus {
+    background: $primary;
+  }
+  &:active i,
+  &:focus i {
+    color: $white;
+  }
+}

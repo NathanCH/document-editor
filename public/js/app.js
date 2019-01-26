@@ -91047,17 +91047,19 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRouterDom = __webpack_require__(62);
-
 var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
+
+var _reactRouterDom = __webpack_require__(62);
 
 var _Card = __webpack_require__(189);
 
 var _Card2 = _interopRequireDefault(_Card);
 
-var _reactstrap = __webpack_require__(7);
+var _GridItemDropdown = __webpack_require__(330);
+
+var _GridItemDropdown2 = _interopRequireDefault(_GridItemDropdown);
 
 __webpack_require__(304);
 
@@ -91086,7 +91088,7 @@ var GridItem = function GridItem(props) {
     );
   };
 
-  var CustomSection = function CustomSection(props) {
+  var CustomSection = function CustomSection() {
     return _react2.default.createElement(
       'div',
       { className: 'grid-item-custom-section' },
@@ -91095,29 +91097,7 @@ var GridItem = function GridItem(props) {
         { className: 'grid-item-thumb' },
         _react2.default.createElement('i', { className: 'fas fa-file-alt' })
       ),
-      _react2.default.createElement(
-        'div',
-        { className: 'grid-item-dropdown' },
-        _react2.default.createElement(
-          _reactstrap.UncontrolledButtonDropdown,
-          { direction: 'down' },
-          _react2.default.createElement(
-            _reactstrap.DropdownToggle,
-            { color: 'white', className: 'grid-item-toggle' },
-            _react2.default.createElement('i', { className: 'fas fa-ellipsis-v' })
-          ),
-          _react2.default.createElement(
-            _reactstrap.DropdownMenu,
-            { right: true },
-            _react2.default.createElement(
-              _reactstrap.DropdownItem,
-              { tag: _reactRouterDom.Link, to: documentPath + '/delete' },
-              _react2.default.createElement('i', { className: 'fas fa-fw fa-trash' }),
-              ' Remove'
-            )
-          )
-        )
-      )
+      _react2.default.createElement(_GridItemDropdown2.default, null)
     );
   };
 
@@ -91453,7 +91433,7 @@ var CardWrapper = function CardWrapper(props) {
 
 CardWrapper.propTypes = {
   className: _propTypes2.default.string,
-  customSection: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func]),
+  customSection: _propTypes2.default.element,
   title: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
   text: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])
 };
@@ -91647,7 +91627,7 @@ exports = module.exports = __webpack_require__(8)(false);
 
 
 // module
-exports.push([module.i, ".grid-item-custom-section {\n  position: relative; }\n\n.grid-item-thumb {\n  text-align: center; }\n\n.grid-item-thumb .fa-file-alt {\n  font-size: 7rem;\n  line-height: 16rem;\n  color: #e9ecef; }\n\n.grid-item-dropdown {\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.grid-item-dropdown .fa-ellipsis-v {\n  font-size: 1.25rem;\n  line-height: 1.75rem;\n  color: #f66051; }\n\n.grid-item-toggle {\n  border-radius: 2.5rem !important;\n  width: 2.5rem;\n  height: 2.5rem; }\n  .grid-item-toggle:hover {\n    background: #f8f9fa; }\n  .grid-item-toggle:active, .grid-item-toggle:focus {\n    background: #f66051; }\n  .grid-item-toggle:active i,\n  .grid-item-toggle:focus i {\n    color: #fff; }\n\n.grid-item-title {\n  color: inherit; }\n  .grid-item-title:hover {\n    text-decoration: none; }\n", ""]);
+exports.push([module.i, ".grid-item-custom-section {\n  position: relative; }\n\n.grid-item-thumb {\n  text-align: center; }\n\n.grid-item-thumb .fa-file-alt {\n  font-size: 7rem;\n  line-height: 16rem;\n  color: #e9ecef; }\n\n.grid-item-title {\n  color: inherit; }\n  .grid-item-title:hover {\n    text-decoration: none; }\n", ""]);
 
 // exports
 
@@ -92446,6 +92426,118 @@ exports.push([module.i, "button:disabled {\n  opacity: 0.5; }\n", ""]);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 328 */,
+/* 329 */,
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _redux = __webpack_require__(12);
+
+var _reactRedux = __webpack_require__(23);
+
+var _requestReducer = __webpack_require__(28);
+
+var _reactstrap = __webpack_require__(7);
+
+__webpack_require__(331);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GridItemMenu = function GridItemMenu(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'grid-item-dropdown' },
+    _react2.default.createElement(
+      _reactstrap.UncontrolledButtonDropdown,
+      { direction: 'down' },
+      _react2.default.createElement(
+        _reactstrap.DropdownToggle,
+        { color: 'white', className: 'grid-item-toggle' },
+        _react2.default.createElement('i', { className: 'fas fa-ellipsis-v' })
+      ),
+      _react2.default.createElement(
+        _reactstrap.DropdownMenu,
+        { right: true },
+        _react2.default.createElement(
+          _reactstrap.DropdownItem,
+          { onClick: props.request },
+          _react2.default.createElement('i', { className: 'fas fa-fw fa-trash' }),
+          ' Remove'
+        )
+      )
+    )
+  );
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    request: _requestReducer.request
+  }, dispatch);
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(GridItemMenu);
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(332);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(9)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/lib/loader.js!./GridItemDropdown.scss", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/lib/loader.js!./GridItemDropdown.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".grid-item-dropdown {\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.grid-item-dropdown .fa-ellipsis-v {\n  font-size: 1.25rem;\n  line-height: 1.75rem;\n  color: #f66051; }\n\n.grid-item-toggle {\n  border-radius: 2.5rem !important;\n  width: 2.5rem;\n  height: 2.5rem; }\n  .grid-item-toggle:hover {\n    background: #f8f9fa; }\n  .grid-item-toggle:active, .grid-item-toggle:focus {\n    background: #f66051; }\n  .grid-item-toggle:active i,\n  .grid-item-toggle:focus i {\n    color: #fff; }\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

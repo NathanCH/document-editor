@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
-import Card from 'components/Card';
+import { Link } from 'react-router-dom';
 
-import {
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledButtonDropdown,
-} from 'reactstrap';
+import Card from 'components/Card';
+import GridItemDropdown from './GridItemDropdown';
 
 import './GridItem.scss';
 
@@ -31,23 +26,12 @@ const GridItem = props => {
     </Link>
   );
 
-  const CustomSection = (props) => (
+  const CustomSection = () => (
     <div className="grid-item-custom-section">
       <div className="grid-item-thumb">
         <i className="fas fa-file-alt"></i>
       </div>
-      <div className="grid-item-dropdown">
-        <UncontrolledButtonDropdown direction="down">
-          <DropdownToggle color="white" className="grid-item-toggle">
-            <i className="fas fa-ellipsis-v"></i>
-          </DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem tag={Link} to={documentPath + '/delete'}>
-              <i className="fas fa-fw fa-trash"></i> Remove
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledButtonDropdown>
-      </div>
+      <GridItemDropdown />
     </div>
   );
 
