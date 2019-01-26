@@ -1,16 +1,12 @@
 export const REQUEST_FETCH = 'REQUEST_FETCH';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILURE = 'REQUEST_FAILURE';
-export const SET_FILTER = 'SET_FILTER';
-export const SET_SORT = 'SET_SORT';
 
 const initialState = {
   documents: [],
   count: 0,
   isFetching: false,
   hasError: false,
-  view: 'grid',
-  sort: 'date_desc',
 };
 
 export function requestFetch() {
@@ -48,33 +44,6 @@ export function request(sort = '') {
   };
 }
 
-export function setFilter(viewString) {
-  return {
-    type: SET_FILTER,
-    payload: viewString,
-  };
-}
-
-export function sortView(sortString, oldSortString) {
-  return dispatch => {
-    if (sortString !== oldSortString) {
-      dispatch(setSort(sortString));
-      dispatch(request(sortString));
-    }
-  };
-}
-
-export function setSort(sortString) {
-  return {
-    type: SET_SORT,
-    payload: sortString,
-  };
-}
-
-// export function requestReducer(state = initialState, action) => {};
-
-// export function viewReducer(state = initialState, action) => {};
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_FETCH:
@@ -99,18 +68,6 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         hasError: true,
-      }
-
-    case SET_FILTER:
-      return {
-        ...state,
-        view: action.payload,
-      }
-
-    case SET_SORT:
-      return {
-        ...state,
-        sort: action.payload,
       }
 
     default:

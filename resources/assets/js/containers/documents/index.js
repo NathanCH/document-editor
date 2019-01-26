@@ -1,15 +1,16 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { request, setFilter, sortView } from 'modules/documents';
+import { request } from 'modules/documents/requestReducer';
+import { setFilter, sortView } from 'modules/documents/visibilityReducer';
 import Documents from './Documents';
 
-const mapStateToProps = ({ documents }) => ({
-  documents: documents.documents,
-  count: documents.count,
-  isFetching: documents.isFetching,
-  hasError: documents.hasError,
-  view: documents.view,
-  sort: documents.sort,
+const mapStateToProps = ({ documents: { request, ui } }) => ({
+  documents: request.documents,
+  count: request.count,
+  isFetching: request.isFetching,
+  hasError: request.hasError,
+  view: ui.view,
+  sort: ui.sort,
 });
 
 const mapDispatchToProps = dispatch => (
