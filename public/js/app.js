@@ -92460,7 +92460,7 @@ __webpack_require__(331);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GridItemMenu = function GridItemMenu(props) {
+var GridItemDropdown = function GridItemDropdown(props) {
   return _react2.default.createElement(
     'div',
     { className: 'grid-item-dropdown' },
@@ -92492,7 +92492,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   }, dispatch);
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(GridItemMenu);
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(GridItemDropdown);
 
 /***/ }),
 /* 331 */

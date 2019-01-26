@@ -14,7 +14,7 @@ import {
 
 import './GridItemDropdown.scss';
 
-const GridItemMenu = props => (
+const GridItemDropdown = props => (
   <div className="grid-item-dropdown">
     <UncontrolledButtonDropdown direction="down">
       <DropdownToggle color="white" className="grid-item-toggle">
@@ -35,4 +35,4 @@ const mapDispatchToProps = dispatch => (
   }, dispatch)
 );
 
-export default connect(null, mapDispatchToProps)(GridItemMenu);
+export default connect(null, mapDispatchToProps)(GridItemDropdown);

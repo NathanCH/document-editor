@@ -1,7 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import GridItem from './GridItem';
+
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+const store = mockStore();
 
 const mockItem = {
   id: 1,
@@ -14,9 +22,11 @@ describe('<GridItem />', () => {
   test('it renders a <Card /> as `props.item`', () => {
     const component = renderer
       .create(
-        <MemoryRouter>
-          <GridItem item={mockItem} />
-        </MemoryRouter>
+        <Provider store={store}>
+          <MemoryRouter>
+            <GridItem item={mockItem} />
+          </MemoryRouter>
+        </Provider>
       );
 
     let instance = component.root;
@@ -31,9 +41,11 @@ describe('<GridItem />', () => {
   test('it renders dropdown when `.grid-item-toggle` is clicked', () => {
     const component = renderer
       .create(
-        <MemoryRouter>
-          <GridItem item={mockItem} />
-        </MemoryRouter>
+        <Provider store={store}>
+          <MemoryRouter>
+            <GridItem item={mockItem} />
+          </MemoryRouter>
+        </Provider>
       );
 
     const gridItemToggle = el =>
