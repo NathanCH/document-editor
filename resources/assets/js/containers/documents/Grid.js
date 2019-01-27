@@ -7,21 +7,21 @@ import './Grid.scss';
 
 const Grid = props => (
   <div className="grid">
-    {props.items.map(item => (
+    {Object.keys(props.items).map(id => (
       <GridItem 
-        item={item} 
-        key={item.id} />
+        item={props.items[id]} 
+        key={props.items[id].id} />
     ))}
   </div>
 );
 
 Grid.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.object,
   isFetching: PropTypes.bool,
 };
 
 Grid.defaultProps = {
-  items: [],
+  items: {},
   isFetching: false,
 };
 

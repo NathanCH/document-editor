@@ -13257,14 +13257,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 exports.requestFetch = requestFetch;
 exports.requestSuccess = requestSuccess;
 exports.requestFailure = requestFailure;
-exports.mapStateToDocuments = mapStateToDocuments;
+exports.mapState = mapState;
+exports.mapArrayToObject = mapArrayToObject;
 exports.request = request;
+exports.deleteItem = deleteItem;
+exports.buildUrl = buildUrl;
 var REQUEST_FETCH = exports.REQUEST_FETCH = 'REQUEST_FETCH';
 var REQUEST_SUCCESS = exports.REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 var REQUEST_FAILURE = exports.REQUEST_FAILURE = 'REQUEST_FAILURE';
 
 var initialState = {
-  documents: [],
+  documents: {},
   count: 0,
   isFetching: false,
   hasError: false
@@ -13283,43 +13286,69 @@ function requestSuccess(body) {
   };
 }
 
-function requestFailure(msg) {
+function requestFailure(err) {
   return {
     type: REQUEST_FAILURE,
-    payload: msg
+    payload: err
   };
 }
 
-function mapStateToDocuments(docs, state) {
-  return docs.map(function (doc) {
-    return _extends({}, doc, {
+function mapState(arr) {
+  return arr.map(function (elm) {
+    return _extends({}, elm, {
       isDeleting: false,
       hasDeleteError: false
     });
   });
 }
 
+function mapArrayToObject(docs) {
+  var obj = {};
+  docs.forEach(function (doc) {
+    return obj[doc.id] = _extends({}, doc);
+  });
+  return obj;
+}
+
 function request() {
   var sort = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  var params = { sort: sort };
-  var urlParams = new URLSearchParams(Object.entries(params));
+  var url = buildUrl('/api/documents', { sort: sort });
+  var config = {
+    method: 'GET',
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  };
 
   return function (dispatch) {
     dispatch(requestFetch());
-    return fetch('/api/documents?' + urlParams, {
-      method: 'GET',
-      headers: new Headers({ 'Content-Type': 'application/json' })
-    }).then(function (res) {
+    return fetch(url, config).then(function (res) {
       return res.json();
     }).then(function (body) {
-      return mapStateToDocuments(body.data);
+      return mapArrayToObject(mapState(body.data));
     }).then(function (body) {
       return dispatch(requestSuccess(body));
     }).catch(function (err) {
       return dispatch(requestFailure(err));
     });
   };
+}
+
+function deleteItem(id) {
+  var url = buildUrl('/api/documents/' + id + '/delete');
+  var config = {
+    method: 'POST',
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  };
+
+  return function (dispatch) {
+    // dispatch(deleteItemRequest());
+  };
+}
+
+function buildUrl(path) {
+  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  return path + '?' + new URLSearchParams(Object.entries(params));
 }
 
 exports.default = function () {
@@ -13329,7 +13358,7 @@ exports.default = function () {
   switch (action.type) {
     case REQUEST_FETCH:
       return _extends({}, state, {
-        documents: [],
+        documents: {},
         isFetching: true,
         hasError: false
       });
@@ -90870,7 +90899,7 @@ var Documents = function (_React$Component) {
 }(_react2.default.Component);
 
 Documents.propTypes = {
-  documents: _propTypes2.default.array,
+  documents: _propTypes2.default.object,
   count: _propTypes2.default.number,
   isFetching: _propTypes2.default.bool,
   hasError: _propTypes2.default.bool,
@@ -90882,7 +90911,7 @@ Documents.propTypes = {
 };
 
 Documents.defaultProps = {
-  documents: [],
+  documents: {},
   count: 0,
   isFetching: false,
   hasError: false,
@@ -91021,21 +91050,21 @@ var Grid = function Grid(props) {
   return _react2.default.createElement(
     'div',
     { className: 'grid' },
-    props.items.map(function (item) {
+    Object.keys(props.items).map(function (id) {
       return _react2.default.createElement(_GridItem2.default, {
-        item: item,
-        key: item.id });
+        item: props.items[id],
+        key: props.items[id].id });
     })
   );
 };
 
 Grid.propTypes = {
-  items: _propTypes2.default.array,
+  items: _propTypes2.default.object,
   isFetching: _propTypes2.default.bool
 };
 
 Grid.defaultProps = {
-  items: [],
+  items: {},
   isFetching: false
 };
 
@@ -92138,21 +92167,21 @@ var List = function List(props) {
   return _react2.default.createElement(
     'div',
     { className: 'list' },
-    props.items.map(function (item) {
+    Object.keys(props.items).map(function (id) {
       return _react2.default.createElement(_ListItem2.default, {
-        item: item,
-        key: item.id });
+        item: props.items[id],
+        key: props.items[id].id });
     })
   );
 };
 
 List.propTypes = {
-  items: _propTypes2.default.array,
+  items: _propTypes2.default.object,
   isFetching: _propTypes2.default.bool
 };
 
 List.defaultProps = {
-  items: [],
+  items: {},
   isFetching: false
 };
 

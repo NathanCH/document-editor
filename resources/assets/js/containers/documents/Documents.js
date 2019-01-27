@@ -50,7 +50,7 @@ class Documents extends React.Component {
 }
 
 Documents.propTypes = {
-  documents: PropTypes.array,
+  documents: PropTypes.object,
   count: PropTypes.number,
   isFetching: PropTypes.bool,
   hasError: PropTypes.bool,
@@ -62,7 +62,7 @@ Documents.propTypes = {
 };
 
 Documents.defaultProps = {
-  documents: [],
+  documents: {},
   count: 0,
   isFetching: false,
   hasError: false,

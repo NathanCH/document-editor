@@ -7,21 +7,21 @@ import './List.scss';
 
 const List = props => (
   <div className="list">
-    {props.items.map(item => (
+    {Object.keys(props.items).map(id => (
       <ListItem 
-        item={item} 
-        key={item.id} />
+        item={props.items[id]} 
+        key={props.items[id].id} />
     ))}
   </div>
 );
 
 List.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.object,
   isFetching: PropTypes.bool,
 };
 
 List.defaultProps = {
-  items: [],
+  items: {},
   isFetching: false,
 };
 

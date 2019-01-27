@@ -3,7 +3,7 @@ export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILURE = 'REQUEST_FAILURE';
 
 const initialState = {
-  documents: [],
+  documents: {},
   count: 0,
   isFetching: false,
   hasError: false,
@@ -22,36 +22,46 @@ export function requestSuccess(body) {
   };
 }
 
-export function requestFailure(msg) {
+export function requestFailure(err) {
   return {
     type: REQUEST_FAILURE,
-    payload: msg,
+    payload: err,
   };
 }
 
-export function mapStateToDocuments(docs, state) {
-  return docs.map(doc => ({
-    ...doc,
+export function mapState(arr) {
+  return arr.map(elm => ({
+    ...elm,
     isDeleting: false,
     hasDeleteError: false,
   }));
 }
 
+export function mapArrayToObject(docs) {
+  const obj = {};
+  docs.forEach(doc => obj[doc.id] = { ...doc });
+  return obj;
+}
+
 export function request(sort = '') {
-  const params = { sort: sort };
-  const urlParams = new URLSearchParams(Object.entries(params));
+  const url = buildUrl('/api/documents', { sort: sort });
+  const config = {
+    method: 'GET',
+    headers: new Headers({ 'Content-Type': 'application/json' }),
+  };
 
   return dispatch => {
     dispatch(requestFetch());
-    return fetch('/api/documents?' + urlParams, {
-      method: 'GET',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-    })
+    return fetch(url, config)
       .then(res => res.json())
-      .then(body => mapStateToDocuments(body.data))
+      .then(body => mapArrayToObject(mapState(body.data)))
       .then(body => dispatch(requestSuccess(body)))
       .catch(err => dispatch(requestFailure(err)));
   };
+}
+
+export function buildUrl(path, params = {}) {
+  return path +'?' + new URLSearchParams(Object.entries(params));
 }
 
 export default (state = initialState, action) => {
@@ -59,7 +69,7 @@ export default (state = initialState, action) => {
     case REQUEST_FETCH:
       return {
         ...state,
-        documents: [],
+        documents: {},
         isFetching: true,
         hasError: false,
       }

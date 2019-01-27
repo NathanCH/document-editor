@@ -11,20 +11,20 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 const store = mockStore();
 
-const mockItems = [
-  {
+const mockItems = {
+  1: {
     id: 1,
     title: 'Mocked document',
     created_at: '',
     updated_at: '',
   },
-  {
+  2: {
     id: 2,
     title: 'Second mocked document',
     created_at: '',
     updated_at: '',
   },
-];
+};
 
 describe('<Grid />', () => {
   test('it renders without props', () => {

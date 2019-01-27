@@ -9,15 +9,6 @@ import {
   default as reducer,
 } from './requestReducer.js';
 
-const mockDocuments = [
-  {
-    id: 1,
-    title: 'Mocked Document',
-    created_at: '',
-    updated_at: '',
-  },
-];
-
 describe('Document - RequestReducer', () => {
   let initialState;
 
@@ -29,7 +20,7 @@ describe('Document - RequestReducer', () => {
     expect(reducer(undefined, {
       type: 'REQUEST_FETCH',
     })).toMatchObject({
-      documents: [],
+      documents: {},
       isFetching: true,
       hasError: false,
     });
@@ -38,9 +29,9 @@ describe('Document - RequestReducer', () => {
   test('it should handle `REQUEST_SUCCESS` action', () => {
     expect(reducer(undefined, {
       type: 'REQUEST_SUCCESS',
-      payload: [],
+      payload: {},
     })).toMatchObject({
-      documents: [],
+      documents: {},
       isFetching: false,
       hasError: false,
     });
@@ -50,7 +41,7 @@ describe('Document - RequestReducer', () => {
     expect(reducer(undefined, {
       type: 'REQUEST_FAILURE',
     })).toMatchObject({
-      documents: [],
+      documents: {},
       isFetching: false,
       hasError: true,
     });
@@ -64,11 +55,20 @@ describe('Document - Request Action Creators', () => {
   });
 
   it('creates `REQUEST_FETCH`, `REQUEST_SUCCESS` actions on request() success', () => {
-    fetch.mockResponse(JSON.stringify({ data: mockDocuments }));
+    fetch.mockResponse(JSON.stringify({ 
+      data: [
+        { id: 'myId' },
+      ]
+    }));
 
     const expectedActions = [
       { type: 'REQUEST_FETCH' },
-      { type: 'REQUEST_SUCCESS', payload: mockDocuments },
+      { 
+        type: 'REQUEST_SUCCESS', 
+        payload: {
+          'myId': { id: 'myId' },
+        },
+      },
     ];
 
     const store = mockStore({});
