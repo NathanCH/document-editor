@@ -15,17 +15,26 @@ export function requestFetch() {
   };
 }
 
-export function requestSuccess(res) {
+export function requestSuccess(body) {
   return {
     type: REQUEST_SUCCESS,
-    payload: res,
+    payload: body,
   };
 }
 
-export function requestFailure() {
+export function requestFailure(msg) {
   return {
     type: REQUEST_FAILURE,
+    payload: msg,
   };
+}
+
+export function mapStateToDocuments(docs, state) {
+  return docs.map(doc => ({
+    ...doc,
+    isDeleting: false,
+    hasDeleteError: false,
+  }));
 }
 
 export function request(sort = '') {
@@ -39,7 +48,8 @@ export function request(sort = '') {
       headers: new Headers({ 'Content-Type': 'application/json' }),
     })
       .then(res => res.json())
-      .then(body => dispatch(requestSuccess(body.data)))
+      .then(body => mapStateToDocuments(body.data))
+      .then(body => dispatch(requestSuccess(body)))
       .catch(err => dispatch(requestFailure(err)));
   };
 }
@@ -57,10 +67,10 @@ export default (state = initialState, action) => {
     case REQUEST_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        hasError: false,
-        documents: action.payload,
         count: action.payload.length,
+        documents: action.payload,
+        hasError: false,
+        isFetching: false,
       }
 
     case REQUEST_FAILURE:
